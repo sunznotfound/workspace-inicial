@@ -188,3 +188,20 @@ a.custom-card:hover {
 .checked {
   color: orange;
 }
+
+.form-check {
+  margin: 5px 0; /* Espaciado alrededor del checkbox */
+  text-align: left; /* Alinea el texto a la izquierda */
+}
+
+.form-check input[type="checkbox"] {
+  margin-right: 8px; /* Espacio entre el checkbox y el texto */
+}
+
+.form-check input[type="checkbox"] {
+  transform: scale(0.8); /* Ajusta el tamaño del checkbox */
+}
+
+.form-check-label {
+  font-size: 12px; /* Ajusta el tamaño de la letra */
+} 

@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", function(){
             let contrasena = document.getElementById('password').value.trim();
 
             if (usuario === "" || contrasena === "") {
-                alert();
+                alert("Los campos no pueden estar vacíos.");
             } else {
                     sessionStorage.setItem("user", usuario);
                     window.location.replace("index.html");

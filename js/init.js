@@ -39,3 +39,11 @@ let getJSONData = function(url){
         return result;
     });
 }
+
+document.addEventListener("DOMContentLoaded", function() {
+  const isLoggedIn = sessionStorage.getItem("isLoggedIn");
+
+   if (!isLoggedIn) {
+      window.location.replace("login.html");
+    }
+});

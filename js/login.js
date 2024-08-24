@@ -9,6 +9,7 @@ document.addEventListener("DOMContentLoaded", function(){
                 alert("Los campos no pueden estar vacíos.");
             } else {
                     sessionStorage.setItem("user", usuario);
+                    sessionStorage.setItem("isLoggedIn", true);
                     window.location.replace("index.html");
             }
         });

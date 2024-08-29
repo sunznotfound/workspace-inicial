@@ -249,3 +249,40 @@ a.custom-card:hover {
   font-size: 12px; /* Ajusta el tamaño de la letra */
 } 
 
+/*Estilo base, para pantallas estandar 1366 x 768 px*/
+.login-container {
+  max-width: 350px;
+  margin: 100px auto;
+  padding: 40px;
+  background-color: #fff;
+  border-radius: 30px;
+  box-shadow: 0 4px 8px rgba(253, 123, 1, 0.1);
+  border: 2px solid gold;
+}
+
+/*Estilos para tablets, 768 x 1024 px*/
+
+@media (max-width: 1024px) and (min-width: 768px) {
+  .login-container {
+    max-width: 450px;
+    margin: 80px auto;
+    padding: 30px;
+  }
+}
+
+@media (max-width: 568px) {
+  .login-container {
+    max-width: 90%;
+    margin: 60px auto;
+    padding: 20px;
+  }
+
+  .form-label {
+    font-size: 9px;
+  }
+
+  .btn-naranja {
+    font-size: 12px;
+    padding: 10px;
+  }
+}

@@ -56,3 +56,29 @@ function displayProducts(products) {
         productList.innerHTML = html;
     }
 });
+
+document.getElementById('boton-buscar').addEventListener('click', function() {
+    const searchTerm = document.getElementById('buscar-producto').value.toLowerCase();
+    const products = document.querySelectorAll('.product');
+  
+    products.forEach(function(product) {
+      const title = product.querySelector('h2').textContent.toLowerCase();
+      const description = product.querySelector('p').textContent.toLowerCase();
+  
+      if (title.includes(searchTerm) || description.includes(searchTerm)) {
+        product.style.display = 'block'; // Mostrar producto si coincide con la búsqueda
+      } else {
+        product.style.display = 'none'; // Ocultar producto si no coincide
+      }
+    });
+  });
+  
+  document.getElementById('boton-borrar').addEventListener('click', function() {
+    document.getElementById('buscar-producto').value = ''; // Limpiar el campo de búsqueda
+    const products = document.querySelectorAll('.product');
+  
+    products.forEach(function(product) {
+      product.style.display = 'block'; // Mostrar todos los productos nuevamente
+    });
+  });
+  

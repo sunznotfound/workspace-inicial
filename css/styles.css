@@ -220,3 +220,84 @@ a.custom-card:hover {
   top: 50%; /* Ajusta la posición vertical */
   transform: translateY(-50%); /* Centra verticalmente con respecto a su contenedor */
 }
+
+/*---ESTILO DE PRODUCTS.HTML---*/
+.titleproducts{
+  text-align: center;
+}
+
+.subtitleproducts{
+  font-style: italic;
+  text-align: center;
+}
+
+.products-container {
+  max-width: 1200px;
+  margin: 20px auto;
+  text-align: center;
+}
+.product h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  font-size: 18px;
+  margin: 10px 0;
+}
+.product {
+  display: inline-block;
+  width: 300px;
+  margin: 10px;
+  padding: 10px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+.product img {
+  max-width: 100%;
+  height: auto;
+}
+
+.product-info p {
+  font-size: 14px;
+  color: #555;
+}
+.product-info .price {
+  font-size: 20px;
+  color: #000;
+}
+.product-info .sold {
+  font-size: 14px;
+  color: #999;
+}
+
+/* Ajuste para alinear el input-group a la derecha en pantallas grandes */
+.input-group {
+  width: 500px;
+  margin-left: auto;
+  margin-right: 0;
+}
+
+/* Centrar todo en dispositivos menores a 768px (por ejemplo, celulares) */
+@media (max-width: 767px) {
+  /* Centrar el buscador */
+  .input-group {
+    width: 100%; /* Ocupa todo el ancho disponible */
+    margin: 0 auto; /* Centrar horizontalmente */
+  }
+
+  /* Centrar las tarjetas de productos */
+  .product {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+  }
+
+  .pb-5 {
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+  }
+}
+
+

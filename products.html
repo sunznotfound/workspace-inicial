@@ -10,60 +10,6 @@
   <link href="css/font-awesome.min.css" rel="stylesheet">
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
-  <style>
-    /**estilo para products.html**/
-
-h1, h5 {
-    text-align: center;
-  }
-
-  h5 {
-    font-style: italic;
-  }
-
-
-  .products-container {
-  max-width: 1200px;
-  margin: 20px auto;
-  text-align: center;
-}
-.product h2 {
-  font-size: 24px;
-  margin-bottom: 20px;
-  font-size: 18px;
-  margin: 10px 0;
-}
-.product {
-  display: inline-block;
-  width: 300px;
-  margin: 10px;
-  padding: 10px;
-  background-color: #fff;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
-}
-.product img {
-  max-width: 100%;
-  height: auto;
-}
-
-.product-info p {
-  font-size: 14px;
-  color: #555;
-}
-.product-info .price {
-  font-size: 20px;
-  color: #000;
-}
-.product-info .sold {
-  font-size: 14px;
-  color: #999;
-}
-
-  </style>
-
-
 
 </head>
 
@@ -92,9 +38,16 @@ h1, h5 {
     </div>
   </nav>
   <main class="pb-5 container">
-    <h1>Catálogo de Autos</h1>
-    <h5>El auto perfecto para vos, te está esperando</h5>
+    <h1 class="titleproducts">Catálogo de Autos</h1>
+    <h5 class="subtitleproducts">El auto perfecto para vos, te está esperando</h5>
+
+    <div class="input-group mb-4">
+      <input type="search" id="buscarProducto" placeholder="Buscar productos" class="form-control">
+      <button class="btn btn-outline-primary" id="botonBuscar">🔍</button>
+      <button class="btn btn-outline-secondary" id="botonBorrar">✖️</button>    
+    </div>
     
+
      <hr>
           <div id="products-container" class="row">
              

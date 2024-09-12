@@ -65,7 +65,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // Evento que se dispara cuando el usuario escribe en el campo de búsqueda
-  buscarProducto.addEventListener('input', function () {
+  document.getElementById('buscarProducto').addEventListener('input', function () {
     const filteredProducts = filterProducts(); // Filtrar los productos
     displayProducts(filteredProducts); // Mostrar los productos filtrados
   });

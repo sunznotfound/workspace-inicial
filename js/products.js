@@ -76,3 +76,10 @@ document.addEventListener('DOMContentLoaded', () => {
     displayProducts(products); // Mostrar todos los productos
   });
 });
+
+
+//Función para redirigir a la información del producto
+function redirectToProductInfo(productId){
+  localStorage.setItem('selectedProductId', productId);
+  window.location.href='product-info.html';
+}

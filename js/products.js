@@ -3,7 +3,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const productList = document.getElementById('products-container');
   const buscarProducto = document.getElementById('buscarProducto');
   let products = []; // Inicializamos el array vacío para almacenar los productos
-  
+  let minPrice = undefined;
+  let maxPrice = undefined;
+
   const url = 'https://japceibal.github.io/emercado-api/cats_products/101.json';
 
   // Fetch para obtener los productos
@@ -26,21 +28,24 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
   // Función para mostrar los productos
-  function displayProducts(productsToDisplay) {
+
+  function displayProducts(products) {
     productList.innerHTML = ''; // Borra la lista actual
-    if (productsToDisplay.length === 0) {
-      productList.innerHTML = '<div class="alert alert-warning">No hay productos disponibles.</div>';
-      return;
+    
+
+    let filteredProducts = products;
+    
+    if (minPrice !== undefined) {
+      filteredProducts = filteredProducts.filter(product => product.cost >= minPrice);
+
     }
 
-    const currencyFormatter = new Intl.NumberFormat('es-UY', {
-      style: 'currency',
-      currency: 'USD',
-      currencyDisplay: 'symbol'
-    });
+    if (maxPrice !== undefined) {
+      filteredProducts = filteredProducts.filter(product => product.cost <= maxPrice);
+    }
 
-    productsToDisplay.forEach(product => {
-      const productHTML = `
+    filteredProducts.forEach(product => {
+      productList.innerHTML += `
         <div class="product col-md-4">
           <img src="${product.image}" alt="${product.name}">
           <div class="product-info">
@@ -51,13 +56,36 @@ document.addEventListener('DOMContentLoaded', () => {
           </div>
         </div>
       `;
-      productList.insertAdjacentHTML('beforeend', productHTML); // Añadir el producto al DOM
     });
   }
 
+  const currencyFormatter = new Intl.NumberFormat('es-UY', {
+    style: 'currency',
+    currency: 'USD',
+    currencyDisplay: 'symbol'
+  });
+
+  //eventos para ordenar productos
+
+    document.getElementById("sortAsc").addEventListener("click", function() {
+      products.sort((a, b) => a.cost - b.cost);
+      displayProducts(products);
+    })
+
+    document.getElementById("sortDesc").addEventListener("click", function() {
+      products.sort((a, b) => b.cost - a.cost);
+      displayProducts(products);
+    })
+
+    document.getElementById("sortCount").addEventListener("click", function() {
+      products.sort((a, b) => b.soldCount - a.soldCount);
+      displayProducts(products);
+    })
+
+
   // Función para filtrar productos
   function filterProducts() {
-    const searchTerm = buscarProducto.value.toLowerCase(); // Obtener el valor del campo de búsqueda
+    const searchTerm = buscarProducto.value.toLowerCase().trim(); // Obtener el valor del campo de búsqueda
     return products.filter(product =>
       product.name.toLowerCase().includes(searchTerm) || // Verificar si el nombre contiene el término
       product.description.toLowerCase().includes(searchTerm) // Verificar si la descripción contiene el término
@@ -75,4 +103,22 @@ document.addEventListener('DOMContentLoaded', () => {
     buscarProducto.value = ''; // Limpiar el campo de búsqueda
     displayProducts(products); // Mostrar todos los productos
   });
+
+  //filtrar por precio
+    document.getElementById("filtrar").addEventListener("click", function() {
+      minPrice = document.getElementById("precio-min").value;
+      maxPrice = document.getElementById("precio-max").value;
+
+      minPrice = minPrice ? parseInt(minPrice) : undefined;
+      maxPrice = maxPrice ? parseInt(maxPrice) : undefined;
+
+      displayProducts(products);
+    });
+
+// Evento para limpiar números en los input max y min 
+
+document.getElementById('limpiar').addEventListener('click', function() {
+  document.getElementById('precio-min').value = "";
+  document.getElementById('precio-max').value = "";
 });
+ });

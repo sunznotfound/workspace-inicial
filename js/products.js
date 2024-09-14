@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     productsToDisplay.forEach(product => {
       const productHTML = `
-        <div class="product col-md-4">
+        <div class="product col-md-4" data-product-id="${product.id}">
           <img src="${product.image}" alt="${product.name}">
           <div class="product-info">
             <h2>${product.name}</h2>
@@ -49,11 +49,25 @@ document.addEventListener('DOMContentLoaded', () => {
             <p class="price">${currencyFormatter.format(product.cost)}</p>
             <p class="sold">Vendidos: ${product.soldCount}</p>
           </div>
+          
+          <a href="#" class="btn btn-primary product-link">Ver más</a>
+
         </div>
       `;
       productList.insertAdjacentHTML('beforeend', productHTML); // Añadir el producto al DOM
     });
+
+  // Añadir evento para el clic en "Ver más"
+  document.querySelectorAll('.product-link').forEach(link => {
+    link.addEventListener('click', function (e) {
+      e.preventDefault();
+      const productId = this.closest('.product').getAttribute('data-product-id');
+      localStorage.setItem('selectedProductId', productId); // Guardar el ID en localStorage
+      window.location.href = 'product-info.html'; // Redirigir a product-info.html
+    });
+  });
   }
+
 
   // Función para filtrar productos
   function filterProducts() {
@@ -76,10 +90,3 @@ document.addEventListener('DOMContentLoaded', () => {
     displayProducts(products); // Mostrar todos los productos
   });
 });
-
-
-//Función para redirigir a la información del producto
-function redirectToProductInfo(productId){
-  localStorage.setItem('selectedProductId', productId);
-  window.location.href='product-info.html';
-}

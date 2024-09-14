@@ -47,8 +47,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     }
 
-    filteredProducts.forEach(product => {
-      productList.innerHTML += `
+    products.forEach(product => {
+      const productHTML = `
           <div class="product col-md-4">
           <img src="${product.image}" alt="${product.name}">
           <div class="product-info">
@@ -59,8 +59,10 @@ document.addEventListener('DOMContentLoaded', () => {
           </div>
         </div>
       `;
-    });
+      productList.insertAdjacentHTML('beforeend', productHTML); // Añadir el producto al DOM
 
+    });
+  }
 
     // valor de los precios
      const currencyFormatter = new Intl.NumberFormat('es-UY', {

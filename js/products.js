@@ -47,9 +47,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     }
 
-    products.forEach(product => {
-      const productHTML = `
-          <div class="product col-md-4">
+    
+    filteredProducts.forEach(product => {
+      productList.innerHTML += `
+        <div class="product col-md-4">
           <img src="${product.image}" alt="${product.name}">
           <div class="product-info">
             <h2>${product.name}</h2>
@@ -59,10 +60,9 @@ document.addEventListener('DOMContentLoaded', () => {
           </div>
         </div>
       `;
-      productList.insertAdjacentHTML('beforeend', productHTML); // Añadir el producto al DOM
-
     });
   }
+
 
     // valor de los precios
      const currencyFormatter = new Intl.NumberFormat('es-UY', {
@@ -70,7 +70,22 @@ document.addEventListener('DOMContentLoaded', () => {
       currency: 'USD',
       currencyDisplay: 'symbol'
     });
+  // Eventos para ordenar productos
+  document.getElementById("sortAsc").addEventListener("click", function () {
+    products.sort((a, b) => a.cost - b.cost);
+    displayProducts(products);
+  });
 
+  document.getElementById("sortDesc").addEventListener("click", function () {
+    products.sort((a, b) => b.cost - a.cost);
+    displayProducts(products);
+  });
+
+  document.getElementById("sortCount").addEventListener("click", function () {
+    products.sort((a, b) => b.soldCount - a.soldCount);
+    displayProducts(products);
+  });
+});
 
   // Añadir evento para el clic en "Ver más"
   document.querySelectorAll('.product-link').forEach(link => {
@@ -154,4 +169,5 @@ document.getElementById("filtrar").addEventListener("click", function(){
 document.getElementById('limpiar').addEventListener("click", function(){
   document.getElementById('precio-min').value = '';
   document.getElementById('precio-max').value = '';
+});
 });

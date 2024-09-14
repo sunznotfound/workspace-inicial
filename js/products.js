@@ -36,9 +36,6 @@ document.addEventListener('DOMContentLoaded', () => {
   // Función para mostrar los productos en el contenedor
   function displayProducts(products) {
     productList.innerHTML = ''; // Borra la lista actual
-    if (productsToDisplay.length === 0) {
-      productList.innerHTML = '<div class="alert alert-warning">No hay productos disponibles.</div>';
-      return;
       
       
       let filteredProducts = products;
@@ -49,12 +46,6 @@ document.addEventListener('DOMContentLoaded', () => {
           filteredProducts = filteredProducts.filter(product => product.cost <= maxPrice);
 
     }
-
-    const currencyFormatter = new Intl.NumberFormat('es-UY', {
-      style: 'currency',
-      currency: 'USD',
-      currencyDisplay: 'symbol'
-    });
 
     filteredProducts.forEach(product => {
       productList.innerHTML += `
@@ -69,6 +60,15 @@ document.addEventListener('DOMContentLoaded', () => {
         </div>
       `;
     });
+
+
+    // valor de los precios
+     const currencyFormatter = new Intl.NumberFormat('es-UY', {
+      style: 'currency',
+      currency: 'USD',
+      currencyDisplay: 'symbol'
+    });
+
 
   // Añadir evento para el clic en "Ver más"
   document.querySelectorAll('.product-link').forEach(link => {

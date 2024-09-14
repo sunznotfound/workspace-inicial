@@ -4,8 +4,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const productList = document.getElementById('products-container'); // Contenedor donde se mostrarán los productos
   const buscarProducto = document.getElementById('buscarProducto'); // Campo de búsqueda
   const botonBorrar = document.getElementById('botonBorrar'); // Botón para borrar el campo de búsqueda
-  let minPrice = undefined;
-  let maxPrice = undefined;
   let products = []; // Array para almacenar los productos
 
   // Obtiene el identificador de categoría desde el almacenamiento local
@@ -32,33 +30,25 @@ document.addEventListener('DOMContentLoaded', () => {
       spinner.style.display = 'none';
     });
 
-  // Formateador de moneda
-  const currencyFormatter = new Intl.NumberFormat('es-UY', {
-    style: 'currency',
-    currency: 'USD',
-    currencyDisplay: 'symbol'
-  });
-
-  // Función para mostrar los productos
+  // Función para mostrar los productos en el contenedor
   function displayProducts(productsToDisplay) {
-    productList.innerHTML = ''; // Borra la lista actual
-
-    let filteredProducts = productsToDisplay;
-
-    if (minPrice !== undefined) {
-      filteredProducts = filteredProducts.filter(product => product.cost >= minPrice);
-    }
-    if (maxPrice !== undefined) {
-      filteredProducts = filteredProducts.filter(product => product.cost <= maxPrice);
-    }
-
-    if (filteredProducts.length === 0) {
+    productList.innerHTML = ''; // Limpia el contenedor de productos
+    // Verifica si hay productos para mostrar
+    if (productsToDisplay.length === 0) {
       productList.innerHTML = '<div class="alert alert-warning">No hay productos disponibles.</div>';
       return;
     }
 
-    filteredProducts.forEach(product => {
-      productList.innerHTML += `
+    // Formateador para mostrar el precio en formato de moneda
+    const currencyFormatter = new Intl.NumberFormat('es-UY', {
+      style: 'currency',
+      currency: 'USD',
+      currencyDisplay: 'symbol'
+    });
+
+    // Itera sobre los productos y genera el HTML para cada uno
+    productsToDisplay.forEach(product => {
+      const productHTML = `
         <div class="product col-md-4">
           <img src="${product.image}" alt="${product.name}">
           <div class="product-info">
@@ -69,12 +59,15 @@ document.addEventListener('DOMContentLoaded', () => {
           </div>
         </div>
       `;
+      // Añade el HTML del producto al contenedor
+      productList.insertAdjacentHTML('beforeend', productHTML);
     });
   }
 
   // Función para filtrar los productos según el término de búsqueda
   function filterProducts() {
-    const searchTerm = buscarProducto ? buscarProducto.value.toLowerCase() : '';
+    const searchTerm = buscarProducto ? buscarProducto.value.toLowerCase() : ''; // Obtiene el término de búsqueda en minúsculas
+    // Filtra los productos que contienen el término de búsqueda en el nombre o descripción
     return products.filter(product =>
       product.name.toLowerCase().includes(searchTerm) ||
       product.description.toLowerCase().includes(searchTerm)
@@ -108,28 +101,11 @@ document.addEventListener('DOMContentLoaded', () => {
   // Configura el evento para limpiar el campo de búsqueda y mostrar todos los productos
   if (botonBorrar) {
     botonBorrar.addEventListener('click', function () {
-      buscarProducto.value = '';
-      displayProducts(products);
+      if (buscarProducto) {
+        buscarProducto.value = ''; // Limpia el campo de búsqueda
+      }
+      displayProducts(products); // Muestra todos los productos
     });
   }
-
-  // Filtrar por precio
-  document.getElementById("filtrar").addEventListener("click", function () {
-    minPrice = document.getElementById("precio-min").value;
-    maxPrice = document.getElementById("precio-max").value;
-
-    minPrice = minPrice ? parseInt(minPrice) : undefined;
-    maxPrice = maxPrice ? parseInt(maxPrice) : undefined;
-
-    displayProducts(products);
-  });
-
-  // Limpiar filtros de precio
-  document.getElementById('limpiar').addEventListener("click", function () {
-    document.getElementById('precio-min').value = '';
-    document.getElementById('precio-max').value = '';
-    minPrice = undefined;
-    maxPrice = undefined;
-    displayProducts(products);
-  });
 });
+

@@ -34,11 +34,20 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
   // Función para mostrar los productos en el contenedor
-  function displayProducts(productsToDisplay) {
-    productList.innerHTML = ''; // Limpia el contenedor de productos
+  function displayProducts(products) {
+    productList.innerHTML = ''; // Borra la lista actual
     if (productsToDisplay.length === 0) {
       productList.innerHTML = '<div class="alert alert-warning">No hay productos disponibles.</div>';
       return;
+      
+      
+      let filteredProducts = products;
+           if (minPrice !== undefined) {
+      filteredProducts = filteredProducts.filter(product => product.cost >= minPrice);
+             }
+          if (maxPrice !== undefined) {
+          filteredProducts = filteredProducts.filter(product => product.cost <= maxPrice);
+
     }
 
     const currencyFormatter = new Intl.NumberFormat('es-UY', {
@@ -47,9 +56,9 @@ document.addEventListener('DOMContentLoaded', () => {
       currencyDisplay: 'symbol'
     });
 
-    productsToDisplay.forEach(product => {
-      const productHTML = `
-        <div class="product col-md-4">
+    filteredProducts.forEach(product => {
+      productList.innerHTML += `
+          <div class="product col-md-4">
           <img src="${product.image}" alt="${product.name}">
           <div class="product-info">
             <h2>${product.name}</h2>
@@ -59,8 +68,17 @@ document.addEventListener('DOMContentLoaded', () => {
           </div>
         </div>
       `;
-      productList.insertAdjacentHTML('beforeend', productHTML);
     });
+
+  // Añadir evento para el clic en "Ver más"
+  document.querySelectorAll('.product-link').forEach(link => {
+    link.addEventListener('click', function (e) {
+      e.preventDefault();
+      const productId = this.closest('.product').getAttribute('data-product-id');
+      localStorage.setItem('selectedProductId', productId); // Guardar el ID en localStorage
+      window.location.href = 'product-info.html'; // Redirigir a product-info.html
+    });
+  });
   }
 
   // Función para filtrar los productos según el término de búsqueda y el rango de precios
@@ -91,39 +109,47 @@ document.addEventListener('DOMContentLoaded', () => {
     products.sort((a, b) => b.soldCount - a.soldCount);
     displayProducts(products);
   });
+});
 
-  // Configura el evento para filtrar productos cuando el usuario escribe en el campo de búsqueda
+    // Función para filtrar los productos según el término de búsqueda
+  function filterProducts() {
+    const searchTerm = buscarProducto.value.toLowerCase(); // Obtener el valor del campo de búsqueda
+    return products.filter(product =>
+      product.name.toLowerCase().includes(searchTerm) ||
+      product.description.toLowerCase().includes(searchTerm)
+    );
+  }
+
+
+   // Configura el evento para filtrar productos cuando el usuario escribe en el campo de búsqueda
   if (buscarProducto) {
     buscarProducto.addEventListener('input', function () {
-      const filteredProducts = filterProducts();
-      displayProducts(filteredProducts);
+      const filteredProducts = filterProducts(); // Filtra los productos
+      displayProducts(filteredProducts); // Muestra los productos filtrados
     });
   }
 
-  // Configura el evento para aplicar el filtro de precio
-  if (filtrarButton) {
-    filtrarButton.addEventListener('click', function () {
-      const filteredProducts = filterProducts();
-      displayProducts(filteredProducts);
-    });
-  }
+   // Botón para borrar el campo de búsqueda y mostrar todos los productos
+  document.getElementById('botonBorrar').addEventListener('click', function () {
+    buscarProducto.value = ''; // Limpiar el campo de búsqueda
+    displayProducts(products); // Mostrar todos los productos
+  });
 
-  // Configura el evento para limpiar el filtro de precio
-  if (limpiarButton) {
-    limpiarButton.addEventListener('click', function () {
-      if (precioMinInput) precioMinInput.value = '';
-      if (precioMaxInput) precioMaxInput.value = '';
-      displayProducts(products); // Muestra todos los productos
-    });
-  }
 
-  // Configura el evento para limpiar el campo de búsqueda y mostrar todos los productos
-  if (botonBorrar) {
-    botonBorrar.addEventListener('click', function () {
-      if (buscarProducto) {
-        buscarProducto.value = ''; // Limpia el campo de búsqueda
-      }
-      displayProducts(products); // Muestra todos los productos
-    });
-  }
+//filtrar por precio
+document.getElementById("filtrar").addEventListener("click", function(){
+  minPrice = document.getElementById("precio-min").value;
+  maxPrice = document.getElementById("precio-max").value;
+
+  minPrice = minPrice ? parseInt(minPrice) : undefined;
+  maxPrice = maxPrice ? parseInt(maxPrice) : undefined;
+
+  displayProducts(products);
+});
+
+// evento para limpiar números en los input max y min
+
+document.getElementById('limpiar').addEventListener("click", function(){
+  document.getElementById('precio-min').value = '';
+  document.getElementById('precio-max').value = '';
 });

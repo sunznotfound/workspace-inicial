@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const filtrarButton = document.getElementById('filtrar'); // Botón para aplicar filtro de precio
   const limpiarButton = document.getElementById('limpiar'); // Botón para limpiar filtros
   let products = []; // Array para almacenar los productos
+  let minPrice, maxPrice;
 
   // Obtiene el identificador de categoría desde el almacenamiento local
   const catID = localStorage.getItem('catID');
@@ -50,44 +51,20 @@ document.addEventListener('DOMContentLoaded', () => {
     
     filteredProducts.forEach(product => {
       productList.innerHTML += `
-        <div class="product col-md-4">
+        <div class="product col-md-4" data-product-id="${product.id}">
           <img src="${product.image}" alt="${product.name}">
           <div class="product-info">
             <h2>${product.name}</h2>
             <p>${product.description}</p>
             <p class="price">${currencyFormatter.format(product.cost)}</p>
             <p class="sold">Vendidos: ${product.soldCount}</p>
+            <a href="#" class="product-link">Ver más</a>
           </div>
         </div>
       `;
     });
-  }
 
-
-    // valor de los precios
-     const currencyFormatter = new Intl.NumberFormat('es-UY', {
-      style: 'currency',
-      currency: 'USD',
-      currencyDisplay: 'symbol'
-    });
-  // Eventos para ordenar productos
-  document.getElementById("sortAsc").addEventListener("click", function () {
-    products.sort((a, b) => a.cost - b.cost);
-    displayProducts(products);
-  });
-
-  document.getElementById("sortDesc").addEventListener("click", function () {
-    products.sort((a, b) => b.cost - a.cost);
-    displayProducts(products);
-  });
-
-  document.getElementById("sortCount").addEventListener("click", function () {
-    products.sort((a, b) => b.soldCount - a.soldCount);
-    displayProducts(products);
-  });
-});
-
-  // Añadir evento para el clic en "Ver más"
+    // Añadir evento para el clic en "Ver más"
   document.querySelectorAll('.product-link').forEach(link => {
     link.addEventListener('click', function (e) {
       e.preventDefault();
@@ -96,20 +73,56 @@ document.addEventListener('DOMContentLoaded', () => {
       window.location.href = 'product-info.html'; // Redirigir a product-info.html
     });
   });
-  }
+}
+
+
+  // Valor de los precios
+  const currencyFormatter = new Intl.NumberFormat('es-UY', {
+    style: 'currency',
+    currency: 'USD',
+    currencyDisplay: 'symbol'
+  });
 
   // Función para filtrar los productos según el término de búsqueda y el rango de precios
   function filterProducts() {
     const searchTerm = buscarProducto ? buscarProducto.value.toLowerCase() : '';
-    const minPrice = parseFloat(precioMinInput.value) || 0;
-    const maxPrice = parseFloat(precioMaxInput.value) || Infinity;
+    minPrice = parseFloat(precioMinInput.value) || 0;
+    maxPrice = parseFloat(precioMaxInput.value) || Infinity;
 
     return products.filter(product =>
-      (product.name.toLowerCase().includes(searchTerm) ||
-      product.description.toLowerCase().includes(searchTerm)) &&
+      (product.name.toLowerCase().includes(searchTerm) || product.description.toLowerCase().includes(searchTerm)) &&
       (product.cost >= minPrice && product.cost <= maxPrice)
     );
   }
+
+  // Configura el evento para filtrar productos cuando el usuario escribe en el campo de búsqueda
+  if (buscarProducto) {
+    buscarProducto.addEventListener('input', function () {
+      const filteredProducts = filterProducts(); // Filtra los productos
+      displayProducts(filteredProducts); // Muestra los productos filtrados
+    });
+  }
+
+  // Botón para borrar el campo de búsqueda y mostrar todos los productos
+  botonBorrar.addEventListener('click', function () {
+    buscarProducto.value = ''; // Limpiar el campo de búsqueda
+    displayProducts(products); // Mostrar todos los productos
+  });
+
+  // Filtrar por precio
+  filtrarButton.addEventListener("click", function(){
+    minPrice = parseFloat(precioMinInput.value) || 0;
+    maxPrice = parseFloat(precioMaxInput.value) || Infinity;
+
+    displayProducts(filterProducts());
+  });
+
+  // Evento para limpiar números en los input max y min
+  limpiarButton.addEventListener("click", function(){
+    precioMinInput.value = '';
+    precioMaxInput.value = '';
+    displayProducts(products);
+  });
 
   // Eventos para ordenar productos
   document.getElementById("sortAsc").addEventListener("click", function () {
@@ -126,48 +139,4 @@ document.addEventListener('DOMContentLoaded', () => {
     products.sort((a, b) => b.soldCount - a.soldCount);
     displayProducts(products);
   });
-});
-
-    // Función para filtrar los productos según el término de búsqueda
-  function filterProducts() {
-    const searchTerm = buscarProducto.value.toLowerCase(); // Obtener el valor del campo de búsqueda
-    return products.filter(product =>
-      product.name.toLowerCase().includes(searchTerm) ||
-      product.description.toLowerCase().includes(searchTerm)
-    );
-  }
-
-
-   // Configura el evento para filtrar productos cuando el usuario escribe en el campo de búsqueda
-  if (buscarProducto) {
-    buscarProducto.addEventListener('input', function () {
-      const filteredProducts = filterProducts(); // Filtra los productos
-      displayProducts(filteredProducts); // Muestra los productos filtrados
-    });
-  }
-
-   // Botón para borrar el campo de búsqueda y mostrar todos los productos
-  document.getElementById('botonBorrar').addEventListener('click', function () {
-    buscarProducto.value = ''; // Limpiar el campo de búsqueda
-    displayProducts(products); // Mostrar todos los productos
-  });
-
-
-//filtrar por precio
-document.getElementById("filtrar").addEventListener("click", function(){
-  minPrice = document.getElementById("precio-min").value;
-  maxPrice = document.getElementById("precio-max").value;
-
-  minPrice = minPrice ? parseInt(minPrice) : undefined;
-  maxPrice = maxPrice ? parseInt(maxPrice) : undefined;
-
-  displayProducts(products);
-});
-
-// evento para limpiar números en los input max y min
-
-document.getElementById('limpiar').addEventListener("click", function(){
-  document.getElementById('precio-min').value = '';
-  document.getElementById('precio-max').value = '';
-});
 });

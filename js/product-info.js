@@ -17,14 +17,14 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
   
-    const url = 'https://japceibal.github.io/emercado-api/products/${selectedProductId}.json';
+    const url = `https://japceibal.github.io/emercado-api/products/${selectedProductId}.json`;
   
     fetch(url)
       .then(response => response.json())
       .then(product => {
         productNameElement.textContent = product.name;
         productDescriptionElement.textContent = product.description;
-        productPriceElement.textContent = '${product.cost}';
+        productPriceElement.textContent = `$${product.cost}`;
         productSoldCountElement.textContent = product.soldCount;
         productCategoryElement.textContent = product.category;
         mainProductImage.src = product.images[0]; // Imagen principal
@@ -42,6 +42,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     })
     .catch(error => {
-      console.error('Error al obtener los detalles del producto:', error);
+      console.error('Error al obtener las especificaciones del producto:', error);
       });
   });

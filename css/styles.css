@@ -359,3 +359,9 @@ h1, h2 {
   color: #666;
   margin-top: 10px;
 }
+
+#related-products-container{
+  align-items: center;
+  justify-content: center;
+  }
+  

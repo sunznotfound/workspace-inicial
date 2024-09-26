@@ -10,6 +10,9 @@ document.addEventListener('DOMContentLoaded', () => {
       document.getElementById('thumbnail-2'),
       document.getElementById('thumbnail-3')
     ];
+
+    const relatedProductsContainer = document.getElementById('related-products-container'); // Obtener el contenedor
+    
     const selectedProductId = localStorage.getItem('selectedProductId');
   
     if (!selectedProductId) {
@@ -22,6 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
     fetch(url)
       .then(response => response.json())
       .then(product => {
+        // Actualización de la información del producto
         productNameElement.textContent = product.name;
         productDescriptionElement.textContent = product.description;
         productPriceElement.textContent = `$${product.cost}`;
@@ -40,8 +44,42 @@ document.addEventListener('DOMContentLoaded', () => {
             mainProductImage.src = product.images[index + 1] || product.images[0];
           });
         });
-    })
-    .catch(error => {
-      console.error('Error al obtener las especificaciones del producto:', error);
-      });
-  });
+        
+        // Llamar a la función para mostrar productos relacionados
+        displayRelatedProducts(product.relatedProducts);
+      })
+      .catch(error => {
+        console.error('Error al obtener las especificaciones del producto:', error);
+      });
+});
+
+// Mostrar productos relacionados
+function displayRelatedProducts(relatedProducts) {
+  const relatedProductsContainer = document.getElementById('related-products-container'); // Reafirmamos que existe el contenedor
+  relatedProductsContainer.innerHTML = ''; // Limpiar contenedor de productos relacionados
+
+  relatedProducts.forEach(relatedProduct => {
+    const relatedProductHTML = `
+      <div class="col-md-3">
+        <div class="card mb-3">
+          <img src="${relatedProduct.image}" class="card-img-top" alt="${relatedProduct.name}">
+          <div class="card-body">
+            <h5 class="card-title">${relatedProduct.name}</h5>
+            <a href="#" class="btn btn-primary ver-producto-relacionado" data-product-id="${relatedProduct.id}">Ver Producto</a>
+          </div>
+        </div>
+      </div>
+    `;
+    relatedProductsContainer.innerHTML += relatedProductHTML;
+  });
+
+  // Añadir evento a los botones de productos relacionados
+  document.querySelectorAll('.ver-producto-relacionado').forEach(button => {
+    button.addEventListener('click', function (e) {
+      e.preventDefault();
+      const relatedProductId = this.getAttribute('data-product-id');
+      localStorage.setItem('selectedProductId', relatedProductId); // Guardar el ID del producto relacionado
+      window.location.href = 'product-info.html'; // Redirigir a la misma página para mostrar el nuevo producto
+    });
+  });
+}

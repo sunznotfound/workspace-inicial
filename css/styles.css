@@ -306,6 +306,8 @@ a.custom-card:hover {
 /* Diseño de información del producto */
 .product-info-container {
   display: flex;
+  flex: column;
+  align-items: center;
   justify-content: space-between;
   margin-top: 20px;
 }
@@ -320,6 +322,7 @@ a.custom-card:hover {
   border: 1px solid #ddd;
   padding: 10px;
   background-color: #f9f9f9;
+  align-items: flex-start;
 }
 
 .product-details {
@@ -327,16 +330,18 @@ a.custom-card:hover {
   border: 1px solid #ddd;
   padding: 20px;
   background-color: #fafafa;
+  position: relative;
+  bottom: 55px;
 }
 
 .product-thumbnails {
   display: flex;
-  justify-content: space-between;
-  margin-top: 15px;
+  justify-content: flex-start;
+  margin-top: 10px;
 }
 
 .product-thumbnails img {
-  width: 23%;
+  width: 16%;
   cursor: pointer;
   border: 1px solid #ddd;
 }
@@ -411,3 +416,127 @@ h1, h2 {
 .custom-card:hover .card-body {
   opacity: 1;
 }
+
+h3{
+  text-align: center;
+}
+
+
+/*Sección calificaciones*/
+.estrellas {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row-reverse;
+}
+
+.estrellas input {
+  display: none;
+  
+}
+
+.estrellas label {
+  font-size: 35px;
+  color: lightgray;
+  cursor: pointer;
+  
+}
+
+.estrellas input:checked ~ label {
+  color: gold;
+}
+
+.estrellas label:hover,
+.estrellas label:hover ~ label {
+  color: gold;
+}
+
+.estrellas span {
+  margin-left: 10px;
+  font-size: 14px;
+  color: gray;
+}
+
+label {
+  font-weight: bold;
+  margin-top: 10px;
+  display: block;
+}
+
+.publicar{
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+.reviews {
+  border: black;
+  border: 2px solid;
+  border-radius: 5px;
+  padding: 20px;
+  font-family: "Inter", sans-serif;
+  position: relative;
+  bottom: 210px;
+  left: 690px;
+  width: 40%;
+  height: auto;
+
+}
+
+.instrucciones{
+  font-style: italic;
+  font-size: 13px;
+  color: gray;
+}
+
+.titulo{
+  font-style: italic;
+  font-weight: bold;
+}
+
+
+h5{
+  font-size: 25px;
+
+}
+
+h6{
+  font-size: 20px;
+
+}
+
+input[type="text"], textarea{
+  font-style: italic;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-bottom: 7px;
+  padding-top: 7px;
+  border-color: black;
+  border-radius: 5px;
+  border: 1px solid;
+  font-size: 13px;
+  width: 100%;
+}
+
+.publicar{
+  border-color: white solid;
+  border: 3px;
+  background-color: #ff8c00;
+  color: #000;
+  box-shadow: 2px 2px 5px rgba(128, 128, 128, 0.3);
+  cursor: pointer;
+  display: block;
+  margin: 0 auto;
+}
+
+.publicar:hover{
+  background-color: #ff8e4a;
+}
+

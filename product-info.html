@@ -9,6 +9,9 @@
   <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,700&display=swap" rel="stylesheet">
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
 
 </head>
 
@@ -61,6 +64,47 @@
       <img id="thumbnail-2" src="" alt="Miniatura 2">
       <img id="thumbnail-3" src="" alt="Miniatura 3">
     </div>
+
+    <!--Sección calificaciones-->
+    
+    <div>
+      
+    </div>
+    
+    <form class="reviews">
+      <p class="instrucciones">Los campos obligatorios están marcados con *</p>
+      <h5 class="titulo">Añadir una calificación*</h5>
+
+      <div class="estrellas">
+        <input type="radio" id="estrella1" name="estrellas" value="1">
+        <label for="estrella1" title="1 estrella">&#9733;</label>
+
+        <input type="radio" id="estrella2" name="estrellas" value="2">
+        <label for="estrella2" title="2 estrellas">&#9733;</label>
+
+        <input type="radio" id="estrella3" name="estrellas" value="3">
+        <label for="estrella3" title="3 estrellas">&#9733;</label>
+
+        <input type="radio" id="estrella4" name="estrellas" value="4">
+        <label for="estrella4" title="4 estrellas">&#9733;</label>
+
+        <input type="radio" id="estrella5" name="estrellas" value="5">
+        <label for="estrella5" title="5 estrellas">&#9733;</label>        
+
+        <span class="instrucciones">Haga clic para calificar!</span>
+      </div> <br>
+
+      <h6 class="titulo">Título de Reseña*</h6>
+      <input type="text" maxlength="50" placeholder="Máximo de 50 caracteres."><br><br>
+      
+      <h6 class="titulo">Reseña*</h6>
+      <textarea rows="10" cols="25" placeholder="Escribe tu experiencia con este producto..."></textarea><br><br>
+      
+      <h6 class="titulo">Nombre de Usuario*</h6>
+      <input type="text"> <br><br>
+      
+      <button type="button" class="publicar">PUBLICAR RESEÑA</button>
+    </form>
 
       <!-- Sección de productos relacionados -->
       <hr>

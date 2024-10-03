@@ -368,6 +368,7 @@ h1, h2 {
 #related-products-container{
   align-items: center;
   justify-content: center;
+  text-align: center;
   }
   
   .custom-card {

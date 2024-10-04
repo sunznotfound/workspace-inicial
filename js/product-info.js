@@ -153,3 +153,42 @@ function manejarBusqueda(comments) {
         mostrarComentarios(comentariosFiltrados); // Volver a mostrar solo los comentarios filtrados
     });
 }
+
+
+// Agregar calificaciones
+document.getElementById('publishReview').addEventListener('click', function(){
+    const estrellas=document.querySelector('input[name="estrellas"]:checked');
+    const reviewTitle=document.getElementById('reviewTitle').value;
+    const reviewText=document.getElementById('reviewText').value;
+    const reviewUser=document.getElementById('reviewUser').value;
+
+    if (estrellas && reviewTitle && reviewText && reviewUser){
+        const newReview=document.createElement('div');
+        newReview.classList.add('comentario', 'comentarios');
+
+
+        newReview.innerHTML = `
+            <h5>${reviewTitle} <span>por ${reviewUser}</span></h5>
+            <p class="calificacion">${'★'.repeat(estrellas.value)} ${'☆'.repeat(5 - estrellas.value)}</p>
+            <p>${reviewText}</p>
+        `;
+
+        // Agregar reseña
+        document.getElementById('comentarios').appendChild(newReview);
+
+        // Borrar datos del formulario
+        document.getElementById('reviewTitle').value = '';
+        document.getElementById('reviewText').value = '';
+        document.getElementById('reviewUser').value = '';
+        
+        
+        const checkedStar = document.querySelector('input[name="estrellas"]:checked');
+        if (checkedStar) {
+            checkedStar.checked = false;
+        }
+        
+        alert('¡Reseña publicada exitosamente!');    
+    } else {
+        alert ('Los campos con * son obligatorios.');
+    }
+});

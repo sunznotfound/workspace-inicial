@@ -9,7 +9,6 @@
   <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,700&display=swap" rel="stylesheet">
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
-
 </head>
 
 <body>
@@ -30,8 +29,6 @@
           <li class="nav-item">
             <a class="nav-link" href="sell.html">Vender</a>
           </li>
-          <li class="nav-item">
-          </li>
         </ul>
       </div>
     </div>
@@ -44,7 +41,7 @@
       <div class="product-image">
         <img id="main-product-image" src="" alt="Producto">
       </div>
-      
+
       <!-- Detalles del producto -->
       <div class="product-details">
         <h2 id="product-category">Categoría</h2>
@@ -62,13 +59,47 @@
       <img id="thumbnail-3" src="" alt="Miniatura 3">
     </div>
 
-      <!-- Sección de productos relacionados -->
-      <hr>
-      <h3>Productos Relacionados</h3>
-      <div id="related-products-container" class="row" ></div> <!-- Aquí se mostrarán los productos relacionados -->
+    <!-- Sección de productos relacionados -->
+    <hr>
+    <h3>Productos Relacionados</h3>
+    <div id="related-products-container" class="row"></div>
 
+    <!-- Sección de calificaciones -->    
+    <div class="contenedor-reseñas">
+      <!-- Título y Calificación General -->
+      <div class="header-reseñas">
+        <h1>RESEÑAS</h1>
+        <div class="calificacion-general">
+          <span>★ ★ ★ ★ ★</span> 
+        </div>
+      </div>
+
+      <!-- Barra de Búsqueda y Filtro -->
+      <div class="filtros">
+        <input type="text" class="barra-busqueda" placeholder=>
+        <img src="img/lupa.png" alt="Lupa" class="icono-lupa">
+        
+        <select class="filtro-calificacion">
+          <option value="">Calificación</option>
+          <option value="Mayor a menor">Mayor a menor</option>
+          <option value="Menor a mayor">Menor a mayor</option>
+        </select>
+      </div>
+
+      <!-- Contenedor dinámico de reseñas -->
+      <div id="comentarios" class="contenedor-reseñas mt-4">
+        <h2>Comentarios del Producto</h2>
+        <!-- Aquí se agregarán las reseñas de manera dinámica desde el JS -->
+      </div>
+
+      <!-- Paginación -->
+      <div class="paginacion">
+        <p id="paginacion-texto"> Reseñas </p>
+      </div>
+
+    </div> 
   </main>
-  
+
   <footer class="text-muted">
     <div class="container">
       <p class="float-end">
@@ -77,6 +108,7 @@
       <p>Este sitio forma parte de <a href="https://jovenesaprogramar.edu.uy/" target="_blank">Jovenes a Programar</a></p>
     </div>
   </footer>
+
   <div id="spinner-wrapper">
     <div class="lds-ring">
       <div></div>
@@ -85,6 +117,7 @@
       <div></div>
     </div>
   </div>
+
   <script src="js/bootstrap.bundle.min.js"></script>
   <script src="js/init.js"></script>
   <script src="js/product-info.js"></script>

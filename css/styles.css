@@ -411,3 +411,167 @@ h1, h2 {
 .custom-card:hover .card-body {
   opacity: 1;
 }
+
+.calificaciones {
+  width: 100%; /* Ancho del cuadro, puede ajustarse según sea necesario */
+  padding: 20px; /* Relleno interno */
+  background-color: #f9f9f9; /* Color de fondo */
+  border: 2px solid #ddd; /* Borde del cuadro */
+  border-radius: 8px; /* Bordes redondeados */
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Sombra del cuadro */
+  margin: 20px auto; /* Centrar el cuadro y dar espaciado superior/inferior */
+  text-align: center; /* Centrar el texto */
+}
+
+.calificaciones h3 {
+  margin-top: 0; /* Eliminar el margen superior del título */
+  color: #333; /* Color del título */
+}
+
+.search-container {
+  margin-top: 10px; /* Espaciado arriba */
+}
+
+.search-input {
+  width: 100%; /* Ajusta al ancho del contenedor */
+  max-width: 350px; /* Ancho máximo si lo deseas */
+  padding: 10px; /* Espaciado interno */
+  border:#ccc; /* Borde de la barra de búsqueda */
+  background-color: #e4dfe4;
+  border-radius: 20px; /* Bordes redondeados */
+  outline: none; /* Sin contorno al hacer clic */
+}
+
+* {
+  box-sizing: border-box; /* Incluye padding y borde en el ancho total */
+}
+
+/* Contenedor Principal */
+.contenedor-reseñas {
+  background-color: #F6F6F6;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 100%; /* Ajusta el ancho al 100% del contenedor padre */
+  max-width: 1200px; /* Establece un ancho máximo si es necesario */
+  margin: 0 auto; /* Centra el contenedor horizontalmente */
+}
+
+/* Título y Calificación */
+.header-reseñas {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.header-reseñas h1 {
+  margin: 0;
+  font-size: 2em;
+}
+
+.calificacion-general {
+  font-size: 1.5em;
+  color: #f3853b;
+}
+
+/* Filtros (barra de búsqueda y calificación) */
+.filtros {
+  display: flex; /* Asegúrate de que los elementos estén en línea */
+  justify-content: center; /* Centra el contenido horizontalmente */
+  align-items: center; /* Alinea verticalmente */
+  margin-bottom: 20px; /* Espacio debajo de los filtros */
+}
+
+.icono-lupa {
+  position: absolute; /* Posición absoluta para colocar el ícono en relación a su contenedor */
+  left: 445px; /* Espacio desde la izquierda */
+  top: 50%; /* Alinea verticalmente en el centro */
+  transform: translateY(3390%); /* Ajusta la posición para centrarlo verticalmente */
+  width: 25px; /* Ancho del ícono, ajusta según tu preferencia */
+  height: 25px; /* Alto del ícono, ajusta según tu preferencia */
+}
+
+/* Barra de búsqueda */
+.barra-busqueda {
+  width: 370px; /* Ancho deseado para la barra de búsqueda */
+  padding: 10px;
+  border: 1px solid #ece6f0; /* Borde suave */
+  border-radius: 25px; /* Bordes redondeados */
+  margin-right: 20px; /* Espacio entre la barra de búsqueda y el filtro */
+  background-color: #ece6f0; /* Fondo gris claro */
+  font-size: 1em; /* Tamaño de fuente */
+  transition: border-color 0.3s ease; /* Transición suave para el borde */
+}
+
+.barra-busqueda:focus {
+  outline: none; /* Eliminar el contorno predeterminado */
+  border-color: #f3853b; /* Cambiar el color del borde al enfocar */
+}
+
+/* Filtro de calificación */
+.filtro-calificacion {
+  padding: 10px;
+  border-radius: 25px; /* Bordes redondeados */
+  border: 1px solid #efedee; /* Borde gris */
+  background-color: #efedee; /* Fondo ligeramente más claro */
+  font-size: 1em; /* Tamaño de fuente */
+}
+
+/* Estilo de la Reseña */
+.reseña {
+  padding: 20px;
+  border-top: 1px solid #eee; /* Línea superior */
+  margin-bottom: 20px; /* Espacio inferior entre reseñas */
+  border-radius: 10px; /* Bordes redondeados para reseñas */
+  background-color: #ece6f0; /* Fondo blanco */
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+}
+
+.calificacion {
+  font-size: 1.5em; /* Tamaño de fuente para calificación */
+  color: #f3853b; /* Color de la calificación */
+}
+
+.reseña h3 {
+  font-weight: bold; /* Negrita */
+  font-size: 1.2em; /* Tamaño de fuente */
+  margin: 10px 0; /* Espaciado superior e inferior */
+  color: #333; /* Color del texto */
+}
+
+.reseña p {
+  margin: 10px 0; /* Espaciado superior e inferior */
+  color: #555; /* Color del texto */
+}
+
+/* Detalles de la reseña */
+.detalles {
+  font-size: 0.9em; /* Tamaño de fuente reducido */
+  color: #777; /* Color del texto */
+}
+
+/* Paginación */
+.paginacion {
+  text-align: center; /* Centrar texto */
+  border-top: 1px solid #ffffff; /* Línea superior */
+  padding-top: 10px; /* Espacio superior */
+  margin-top: 20px; /* Espacio superior adicional */
+}
+
+#comentarios {
+  margin-top: 20px; /* Espacio superior */
+  padding: 20px; /* Espacio interno */
+  background-color: #eee; /* Fondo gris claro */
+  border-radius: 5px; /* Bordes redondeados */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+}
+
+/* Estilos para cada comentario */
+.comentario {
+  border-bottom: 1px solid #dee2e6; /* Línea divisoria entre comentarios */
+  padding: 15px 0; /* Espaciado superior e inferior */
+  transition: background-color 0.3s ease; /* Transición suave para el fondo */
+}
+
+.comentario:hover {
+  background-color: #f9f9f9; /* Cambiar el fondo al pasar el ratón */
+}

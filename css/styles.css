@@ -477,14 +477,14 @@ button:hover {
 }
 
 .reviews {
-  border: black;
+  border: rgb(0, 0, 0);
   border: 2px solid;
   border-radius: 5px;
   padding: 20px;
   font-family: "Inter", sans-serif;
   position: relative;
-  bottom: 210px;
-  left: 690px;
+  bottom: 180px;
+  left: 630px;
   width: 40%;
   height: auto;
 
@@ -561,7 +561,7 @@ input[type="text"], textarea{
 }
 
 .search-input {
-  width: 100%; /* Ajusta al ancho del contenedor */
+  width: 370px; /* Ajusta al ancho del contenedor */
   max-width: 350px; /* Ancho máximo si lo deseas */
   padding: 10px; /* Espaciado interno */
   border: 1px solid #ccc; /* Borde de la barra de búsqueda */
@@ -607,15 +607,6 @@ input[type="text"], textarea{
   justify-content: center; /* Centra el contenido horizontalmente */
   align-items: center; /* Alinea verticalmente */
   margin-bottom: 20px; /* Espacio debajo de los filtros */
-}
-
-.icono-lupa {
-  position: absolute; /* Posición absoluta para colocar el ícono en relación a su contenedor */
-  left: 445px; /* Espacio desde la izquierda */
-  top: 50%; /* Alinea verticalmente en el centro */
-  transform: translateY(-50%); /* Ajusta la posición para centrarlo verticalmente */
-  width: 25px; /* Ancho del ícono, ajusta según tu preferencia */
-  height: 25px; /* Alto del ícono, ajusta según tu preferencia */
 }
 
 /* Barra de búsqueda */
@@ -715,10 +706,6 @@ input[type="text"], textarea{
     width: 100%; /* Ancho completo para la barra de búsqueda */
     margin-right: 0; /* Elimina el margen derecho */
     margin-bottom: 10px; /* Espacio inferior */
-  }
-
-  .icono-lupa {
-    left: 30px; /* Ajusta la posición del ícono */
   }
 
   .calificaciones h3 {

@@ -164,16 +164,23 @@ document.getElementById('publishReview').addEventListener('click', function(){
 
     if (estrellas && reviewTitle && reviewText && reviewUser){
         const newReview=document.createElement('div');
-        newReview.classList.add('comentario', 'comentarios');
+        newReview.classList.add('reseña');
 
+        //Obtener la fecha actual
+        const fechaActual = new Date().toLocaleString('es-ES');
+
+        const estrellasHtml = '★'.repeat(estrellas.value) + '☆'.repeat(5 - estrellas.value);
 
         newReview.innerHTML = `
-            <h5>${reviewTitle} <span>por ${reviewUser}</span></h5>
-            <p class="calificacion">${'★'.repeat(estrellas.value)} ${'☆'.repeat(5 - estrellas.value)}</p>
-            <p>${reviewText}</p>
+            <div class="calificacion">${estrellasHtml}</div>
+            <h3>${reviewText}</h3>
+            <div class="detalles">
+                <span>${fechaActual}</span><br>
+                <span>${reviewUser}</span>
+            </div>
         `;
 
-        // Agregar reseña
+        // Agregar la nueva reseña al contenedor de comentarios
         document.getElementById('comentarios').appendChild(newReview);
 
         // Borrar datos del formulario

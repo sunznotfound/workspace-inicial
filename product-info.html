@@ -9,6 +9,10 @@
   <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,700&display=swap" rel="stylesheet">
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+
 </head>
 
 <body>
@@ -59,6 +63,39 @@
       <img id="thumbnail-3" src="" alt="Miniatura 3">
     </div>
 
+    <!--Sección de agregar calificaciones-->
+     
+    <form class="reviews">
+      <p class="instrucciones">Los campos obligatorios están marcados con *</p>
+      <h5 class="titulo">Añadir una calificación*</h5>
+
+      <div id="star-rating" class="estrellas">
+        <input type="radio" name="estrellas" value="1" id="star1">
+        <label for="star1">★</label>
+        <input type="radio" name="estrellas" value="2" id="star2">
+        <label for="star2">★</label>
+        <input type="radio" name="estrellas" value="3" id="star3">
+        <label for="star3">★</label>
+        <input type="radio" name="estrellas" value="4" id="star4">
+        <label for="star4">★</label>
+        <input type="radio" name="estrellas" value="5" id="star5">
+        <label for="star5">★</label>
+    </div>
+      <span class="instrucciones">Haga clic para calificar!</span> <br>
+
+      <h6 class="titulo">Título de Reseña*</h6>
+      <input type="text" id="reviewTitle" maxlength="50" placeholder="Máximo de 50 caracteres."><br><br>
+      
+      <h6 class="titulo">Reseña*</h6>
+      <textarea id="reviewText" rows="10" cols="25" placeholder="Escribe tu experiencia con este producto..."></textarea><br><br>
+      
+      <h6 class="titulo">Nombre de Usuario*</h6>
+      <input type="text" id="reviewUser"> <br><br>
+      
+      <button type="button" class="publicar" id="publishReview">PUBLICAR RESEÑA</button>
+    </form>
+
+
     <!-- Sección de productos relacionados -->
     <hr>
     <h3>Productos Relacionados</h3>
@@ -77,7 +114,7 @@
       <!-- Barra de Búsqueda y Filtro -->
       <div class="filtros">
         <input type="text" class="barra-busqueda" placeholder="Buscar...">
-        <img src="img/lupa.png" alt="Lupa" class="icono-lupa">
+        
         
         <select class="filtro-calificacion">
           <option value="">Calificación</option>
@@ -90,6 +127,7 @@
       <div id="comentarios" class="contenedor-reseñas mt-4">
         <h2>Comentarios del Producto</h2>
         <!-- Aquí se agregarán las reseñas de manera dinámica desde el JS -->
+         
       </div>
 
       <!-- Paginación -->

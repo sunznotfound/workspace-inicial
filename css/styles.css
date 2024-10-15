@@ -790,13 +790,13 @@ input[type="text"], textarea{
   color: #333; 
 }
 
-/*ESTILO BOTONES*/
-.btn{
+/*ESTILO BOTONES DE PERFIL*/
+.btnPerfil{
   background-color: #b4b1b148;
   border-radius: 7%;
   box-shadow: 2px 2px 2px #626262;
 }
-.btn:hover{
+.btnPerfil:hover{
   background-color: #ff7300;
 }
 
@@ -833,6 +833,3 @@ input[type="text"], textarea{
   transform: translateX(24px);
 }
 #checkbox{display: none;}
-
-
-

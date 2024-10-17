@@ -199,3 +199,29 @@ document.getElementById('publishReview').addEventListener('click', function(){
         alert ('Los campos con * son obligatorios.');
     }
 });
+
+// Funcionalidad modo dia/noche
+const toggleButton=document.getElementById('toggle-mode');
+const body=document.body;
+const modoGuardado=localStorage.getItem('theme');
+
+if(modoGuardado){
+    body.classList.add(modoGuardado);
+    updateButtonText(modoGuardado);
+}
+
+toggleButton.addEventListener('click', () => {
+    if (body.classList.contains('night-mode')) {
+      body.classList.replace('night-mode', 'day-mode');
+      localStorage.setItem('theme', 'day-mode');
+      updateButtonText('day-mode');
+    } else {
+      body.classList.replace('day-mode', 'night-mode');
+      localStorage.setItem('theme', 'night-mode');
+      updateButtonText('night-mode');
+    }
+  });
+
+  function updateButtonText(mode) {
+    toggleButton.textContent = mode === 'night-mode' ? 'Modo Día' : 'Modo Noche';
+  }

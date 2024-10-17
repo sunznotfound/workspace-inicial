@@ -833,5 +833,9 @@ input[type="text"], textarea{
 }
 #checkbox{display: none;}
 
-
-
+#imgPerfil {
+  width: 250px; /* Ajusta el tamaño según sea necesario */
+  height: 250px; /* Asegura que la altura y el ancho sean iguales */
+  object-fit: cover; /* Esto recorta la imagen para que se ajuste al área circular */
+  border-radius: 50%; /* Hace que la imagen sea circular */
+}

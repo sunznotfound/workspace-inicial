@@ -215,10 +215,9 @@ a.custom-card:hover {
 #usuarioDisplay {
   color: white;
   font-size: 16px;
-  position: absolute;
-  right: 120px; /* Ajusta el espacio desde el borde derecho */
   top: 50%; /* Ajusta la posición vertical */
   transform: translateY(-50%); /* Centra verticalmente con respecto a su contenedor */
+  position: relative;
 }
 
 /*---ESTILO DE PRODUCTS.HTML---*/

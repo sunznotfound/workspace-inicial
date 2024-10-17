@@ -12,12 +12,8 @@
   <style>
     .navbar {
       position: relative;
-    }
-    #usuarioDisplay {
-      margin-left: 10; /* Espacio entre "Vender" y el nombre de usuario */
-      color: white;
-      font-size: 15px;
-    }
+     }
+   
   </style>
 </head>
 
@@ -39,10 +35,18 @@
           <li class="nav-item">
             <a class="nav-link" href="sell.html">Vender</a>
           </li>
-          <!-- Elemento para mostrar el usuario al lado de "Vender" -->
-          <li class="nav-item">
-            <a href="my-profile.html" id="usuarioDisplay"></a>
-          </li>
+          <!-- Menú desplegable de nombre de usuario -->
+          <div class="dropdown">
+            <a class="btn btn-secondary dropdown-toggle" id="usuarioDisplay" data-bs-toggle="dropdown" aria-expanded="false">
+             nombreUsuario
+            </a>
+          
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="cart.html">Mi carrito</a></li>
+              <li><a class="dropdown-item" href="my-profile.html">Mi perfil</a></li>
+              <li><a class="dropdown-item" id="logout" href="login.html">Cerrar sesión</a></li>
+            </ul>
+          </div>
         </ul>
       </div>
     </div>

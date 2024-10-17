@@ -840,6 +840,3 @@ input[type="text"], textarea{
   object-fit: cover; /* Esto recorta la imagen para que se ajuste al área circular */
   border-radius: 50%; /* Hace que la imagen sea circular */
 }
-
-
-

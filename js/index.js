@@ -19,4 +19,18 @@ document.addEventListener("DOMContentLoaded", function() {
         localStorage.setItem("catID", 103);
         window.location = "products.html";
     });
+
+    // Funcionalidad para cierre de sesión en dropdown 
+
+document.getElementById('logout').addEventListener('click', function () {
+   
+     // Eliminar el usuario del localStorage y sessionStorage
+     localStorage.removeItem("correoUsuario");
+     sessionStorage.removeItem("isLoggedIn"); // Remover la sesión activa
+     sessionStorage.removeItem("user");
+    
+    window.location = 'login.html'; // Redirigir al inicio de sesión
+  });
 });
+
+

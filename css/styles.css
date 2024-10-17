@@ -147,6 +147,7 @@ footer p {
   animation-delay: -0.15s;
 }
 
+
 @keyframes lds-ring {
   0% {
     transform: rotate(0deg);
@@ -730,6 +731,8 @@ input[type="text"], textarea{
   }
 }
 
+ 
+
 /*SECCIÓN MY-PROFILE*/
 .navbar-toggler:hover{
   background-color: #ff7300; /* Cambiar a naranja al pasar el mouse */
@@ -833,5 +836,46 @@ input[type="text"], textarea{
 }
 #checkbox{display: none;}
 
+@media (max-width: 990px) {
+  .dropdown {
+   padding: 15px; /* Añade un espacio para separar los elementos */
+   transform: translateX(-20px); /* Mueve el botón 10px a la izquierda */
+   }
+
+    .jumbotron {
+     height: 200px; /* Reduce la altura de la imagen */
+     transform: translateX(40px); /* Mueve el botón 10px a la izquierda */
+   }
+   }
+
+ @media (max-width: 600px) {
+   .jumbotron {
+    height: 150px;
+    transform: translateX(-30px);
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+   }
+  #usuarioDisplay, .dropdown-menu, .navbar-toggler,.nav-item  {
+    margin-left: 30px;
+   }
+
+   }
+
+
+   @media (max-width: 500px) {
+      .jumbotron {
+        height: 200px; /* Ajusta la altura para pantallas pequeñas */
+        background-size: contain; /* Cambia a contain para que la imagen se ajuste sin recortes */
+         }
+    }
+    
+
+    footer {
+      font-size: x-small;
+    }
+
+    
+
+ 
 
 

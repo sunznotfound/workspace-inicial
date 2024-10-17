@@ -834,43 +834,6 @@ input[type="text"], textarea{
 }
 #checkbox{display: none;}
 
-/* Funcionalidades modo claro y oscuro */
-body.product-info.day-mode {
-  background-color: #ffffff;
-  color: #000000;
-}
-
-body.product-info.night-mode {
-  background-color: #121212;
-  color: #ffffff;
-}
-
-body.night-mode .navbar {
-  background-color: #1f1f1f;
-}
-
-body.night-mode .btn-light {
-  background-color: #333;
-  color: #fff;
-}
-
-body.night-mode .product-details {
-  background-color: #121212;
-  border-color: #fff;
-}
-
-body.night-mode .product-details p,
-body.night-mode .product-details h1,
-body.night-mode .product-details h2 {
-  color: white !important;
-}
-
-body.day-mode .product-details p,
-body.day-mode .product-details h1,
-body.day-mode .product-details h2 {
-  color: black;
-}
-
 #imgPerfil {
   width: 250px; /* Ajusta el tamaño según sea necesario */
   height: 250px; /* Asegura que la altura y el ancho sean iguales */

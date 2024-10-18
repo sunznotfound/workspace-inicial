@@ -39,6 +39,9 @@ document.addEventListener('DOMContentLoaded', () => {
   
 
 
+
+
+
   //SECCIÓN DE FORMULARIO (INPUTS CON VALIDACIONES)
   document.addEventListener('DOMContentLoaded', () => {
     const profileForm = document.getElementById('profileForm');
@@ -56,7 +59,7 @@ document.addEventListener('DOMContentLoaded', () => {
       document.getElementById('contactNumber').value = profileData.contactNumber || '';
     } else {
       // Prellenar el campo email con el ingresado en login (si existe)
-      document.getElementById('email').value = localStorage.getItem('loginEmail') || '';
+      document.getElementById('email').value = localStorage.getItem('correoUsuario') || '';
     }
 
     // Aplicar las validaciones de Bootstrap al enviar el formulario
@@ -94,4 +97,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // En el futuro agregar funcionalidad para cambiar el tema (dark/light) al activar el interruptor
     
 
+
+
     });
+
+

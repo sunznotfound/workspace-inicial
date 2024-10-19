@@ -840,6 +840,12 @@ body.product-info.day-mode {
   color: #000000;
 }
 
+body.day-mode .product-details p,
+body.day-mode .product-details h1,
+body.day-mode .product-details h2 {
+  color: black;
+}
+
 body.product-info.night-mode {
   background-color: #121212;
   color: #ffffff;
@@ -852,6 +858,7 @@ body.night-mode .navbar {
 body.night-mode .btn-light {
   background-color: #333;
   color: #fff;
+  border: 1px solid #fff;
 }
 
 body.night-mode .product-details {
@@ -865,8 +872,3 @@ body.night-mode .product-details h2 {
   color: white !important;
 }
 
-body.day-mode .product-details p,
-body.day-mode .product-details h1,
-body.day-mode .product-details h2 {
-  color: black;
-}

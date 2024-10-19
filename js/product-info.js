@@ -203,25 +203,20 @@ document.getElementById('publishReview').addEventListener('click', function(){
 // Funcionalidad modo dia/noche
 const toggleButton=document.getElementById('toggle-mode');
 const body=document.body;
-const modoGuardado=localStorage.getItem('theme');
+const saved=localStorage.getItem('theme') || 'day-mode';
+body.classList.add(saved);
+updateButtonText(saved);
 
-if(modoGuardado){
-    body.classList.add(modoGuardado);
-    updateButtonText(modoGuardado);
-}
 
 toggleButton.addEventListener('click', () => {
-    if (body.classList.contains('night-mode')) {
-      body.classList.replace('night-mode', 'day-mode');
-      localStorage.setItem('theme', 'day-mode');
-      updateButtonText('day-mode');
-    } else {
-      body.classList.replace('day-mode', 'night-mode');
-      localStorage.setItem('theme', 'night-mode');
-      updateButtonText('night-mode');
-    }
-  });
+    const currentMode = body.classList.contains('night-mode') ? 'night-mode' : 'day-mode';
+    const newMode = currentMode === 'night-mode' ? 'day-mode' : 'night-mode';
 
-  function updateButtonText(mode) {
-    toggleButton.textContent = mode === 'night-mode' ? 'Modo Día' : 'Modo Noche';
+    body.classList.replace(currentMode, newMode);
+    localStorage.setItem('theme', newMode);
+    updateButtonText(newMode);
+});
+
+function updateButtonText(mode) {
+   toggleButton.textContent = mode === 'night-mode' ? 'Modo Día' : 'Modo Noche';
   }

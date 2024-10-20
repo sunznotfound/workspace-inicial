@@ -44,61 +44,66 @@
 
   <main class="container">
     <a href="products.html" class="btn btn-light mb-4">← Volver</a>
-    <div class="product-info-container">
-      <!-- Imagen principal del producto -->
-      <div class="product-image">
-        <img id="main-product-image" src="" alt="Producto">
+    <div class="product-content">
+      <div class="product-info-container">
+        <!-- Imagen principal del producto -->
+        <div class="product-image">
+          <img id="main-product-image" src="" alt="Producto">
+        </div>
+
+        <!-- Detalles del producto -->
+        <div class="product-details">
+          <h2 id="product-category">Categoría</h2>
+          <h1 id="product-name">Nombre del Producto</h1>
+          <p id="product-description">Descripción del producto.</p>
+          <p class="price" id="product-price">$0.00</p>
+          <p class="sold-count">Vendidos: <span id="product-sold-count">0</span></p>
+        </div>
       </div>
 
-      <!-- Detalles del producto -->
-      <div class="product-details">
-        <h2 id="product-category">Categoría</h2>
-        <h1 id="product-name">Nombre del Producto</h1>
-        <p id="product-description">Descripción del producto.</p>
-        <p class="price" id="product-price">$0.00</p>
-        <p class="sold-count">Vendidos: <span id="product-sold-count">0</span></p>
+      <!-- Imágenes miniatura -->
+      <div class="product-thumbnails">
+        <img id="thumbnail-1" src="" alt="Miniatura 1">
+        <img id="thumbnail-2" src="" alt="Miniatura 2">
+        <img id="thumbnail-3" src="" alt="Miniatura 3">
       </div>
-    </div>
 
-    <!-- Imágenes miniatura -->
-    <div class="product-thumbnails">
-      <img id="thumbnail-1" src="" alt="Miniatura 1">
-      <img id="thumbnail-2" src="" alt="Miniatura 2">
-      <img id="thumbnail-3" src="" alt="Miniatura 3">
-    </div>
-
-    <!--Sección de agregar calificaciones-->
+      <!--Sección de agregar calificaciones-->
      
-    <form class="reviews">
-      <p class="instrucciones">Los campos obligatorios están marcados con *</p>
-      <h5 class="titulo">Añadir una calificación*</h5>
+      <form class="reviews">
+        <p class="instrucciones">Los campos obligatorios están marcados con *</p>
+        <h5 class="titulo">Añadir una calificación*</h5>
 
-      <div id="star-rating">
-        <input type="radio" name="estrellas" value="5" id="star5">
-        <label for="star5">★</label>
-        <input type="radio" name="estrellas" value="4" id="star4">
-        <label for="star4">★</label>
-        <input type="radio" name="estrellas" value="3" id="star3">
-        <label for="star3">★</label>
-        <input type="radio" name="estrellas" value="2" id="star2">
-        <label for="star2">★</label>
-        <input type="radio" name="estrellas" value="1" id="star1">
-        <label for="star1">★</label>
-        <span></span>
-    </div>
-      <span class="instrucciones">Haga clic para calificar!</span> <br>
+        <div id="star-rating">
+          <input type="radio" name="estrellas" value="5" id="star5">
+          <label for="star5">★</label>
+          <input type="radio" name="estrellas" value="4" id="star4">
+          <label for="star4">★</label>
+          <input type="radio" name="estrellas" value="3" id="star3">
+          <label for="star3">★</label>
+          <input type="radio" name="estrellas" value="2" id="star2">
+          <label for="star2">★</label>
+          <input type="radio" name="estrellas" value="1" id="star1">
+          <label for="star1">★</label>
+          <span></span>
+        </div>
+        <span class="instrucciones">Haga clic para calificar!</span> <br>
 
-      <h6 class="titulo">Título de Reseña*</h6>
-      <input type="text" id="reviewTitle" maxlength="50" placeholder="Máximo de 50 caracteres."><br><br>
+        <h6 class="titulo">Título de Reseña*</h6>
+        <input type="text" id="reviewTitle" maxlength="50" placeholder="Máximo de 50 caracteres."><br><br>
       
-      <h6 class="titulo">Reseña*</h6>
-      <textarea id="reviewText" rows="10" cols="25" placeholder="Escribe tu experiencia con este producto..."></textarea><br><br>
+        <h6 class="titulo">Reseña*</h6>
+        <textarea id="reviewText" rows="10" cols="25" placeholder="Escribe tu experiencia con este producto..."></textarea><br><br>
       
-      <h6 class="titulo">Nombre de Usuario*</h6>
-      <input type="text" id="reviewUser"> <br><br>
+        <h6 class="titulo">Nombre de Usuario*</h6>
+        <input type="text" id="reviewUser"> <br><br>
       
-      <button type="button" class="publicar" id="publishReview">PUBLICAR RESEÑA</button>
-    </form>
+        <button type="button" class="publicar" id="publishReview">PUBLICAR RESEÑA</button>
+      </form>
+
+      
+
+    
 
 
     <!-- Sección de productos relacionados -->

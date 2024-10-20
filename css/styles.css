@@ -428,6 +428,8 @@ h3{
   justify-content: center;
   align-items: center;
   flex-direction: row-reverse;
+  gap: 10px;
+  flex-wrap: wrap;
 }
 
 #star-rating input {
@@ -455,6 +457,7 @@ h3{
   margin-left: 10px;
   font-size: 14px;
   color: gray;
+  text-align: center;
 }
 
 label {
@@ -470,6 +473,9 @@ label {
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  display: block;
+  margin: 10px auto;
+  width: 80%;
 }
 
 button:hover {
@@ -477,17 +483,14 @@ button:hover {
 }
 
 .reviews {
-  border: rgb(0, 0, 0);
-  border: 2px solid;
+  border: 2px solid black;
   border-radius: 5px;
   padding: 20px;
   font-family: "Inter", sans-serif;
   position: relative;
-  bottom: 180px;
-  left: 630px;
-  width: 40%;
+  width: 90%;
+  margin: 20px auto;
   height: auto;
-
 }
 
 .instrucciones{
@@ -504,20 +507,15 @@ button:hover {
 
 h5{
   font-size: 25px;
-
 }
 
 h6{
   font-size: 20px;
-
 }
 
 input[type="text"], textarea{
   font-style: italic;
-  padding-left: 10px;
-  padding-right: 10px;
-  padding-bottom: 7px;
-  padding-top: 7px;
+  padding: 10px;
   border-color: black;
   border-radius: 5px;
   border: 1px solid;
@@ -532,8 +530,6 @@ input[type="text"], textarea{
   color: #000;
   box-shadow: 2px 2px 5px rgba(128, 128, 128, 0.3);
   cursor: pointer;
-  display: block;
-  margin: 0 auto;
 }
 
 .publicar:hover{

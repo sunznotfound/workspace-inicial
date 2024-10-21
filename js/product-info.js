@@ -99,7 +99,7 @@ function displayRelatedProducts(relatedProducts) {
                     <img src="${relatedProduct.image}" class="card-img-top" alt="${relatedProduct.name}">
                     <div class="card-body">
                         <h5 class="card-title">${relatedProduct.name}</h5>
-                        <a href="#" class="btn btn-primary ver-producto-relacionado" data-product-id="${relatedProduct.id}">Ver Producto</a>
+                        <a href="#" class="btn btn-light ver-producto-relacionado" data-product-id="${relatedProduct.id}" style="background-color:#f6c196;">Ver Producto</a>
                     </div>
                 </div>
             </div>

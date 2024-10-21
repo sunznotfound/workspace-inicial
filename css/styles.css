@@ -794,15 +794,22 @@ input[type="text"], textarea{
   color: #333; 
 }
 
-/*ESTILO BOTONES*/
-.btn{
+/*ESTILO BOTONES PERFIL*/
+#botonGuardar, #deleteButton, #editButton{
   background-color: #b4b1b148;
   border-radius: 7%;
   box-shadow: 2px 2px 2px #626262;
 }
-.btn:hover{
+#botonGuardar:hover{
   background-color: #ff7300;
 }
+#deleteButton:hover{
+  background-color: #ff7300;
+} 
+#editButton:hover{
+  background-color: #ff7300;
+}
+
 
 /* ESTILO SWITCH MODO DARK/LIGHT */
 #toggle{

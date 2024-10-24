@@ -945,6 +945,32 @@ body {
 #checkbox{display: none;}
     
 
+/*Estilos para carrito en products.html*/
+
+#contador-carrito {
+  background-color: #ff741e;
+  border-radius: 100%;
+  display: inline-block;
+  width: 20px;
+  aspect-ratio: 1;
+  text-align: center;
+  line-height: 20px;
+  position: absolute;
+}
+
+#empty-cart-message {
+  margin-top: 100px;
+}
+
+#add-to-cart {
+  background-color: #ff741e;
+  border-color: #ff741e;
+}
+
+#add-to-cart:hover {
+  background-color: #474747;
+  border-color: #ff741e;
+}
  
 
 

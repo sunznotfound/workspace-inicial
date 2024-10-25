@@ -965,6 +965,7 @@ body {
 #add-to-cart {
   background-color: #ff741e;
   border-color: #ff741e;
+  margin-top: 10px;
 }
 
 #add-to-cart:hover {
@@ -972,5 +973,24 @@ body {
   border-color: #ff741e;
 }
  
+#buy {
+  background-color: #ff741e;
+  border-color: #ff741e;
+  margin-top: 10px;
+}
 
+#buy:hover {
+  background-color: #474747;
+  border-color: #ff741e;
+}
 
+.quantity-container {
+  margin-bottom: 10px; /* Espacio entre el contenedor de cantidad y el botón de añadir al carrito */
+}
+
+#decreaseButton,
+#increaseButton {
+  padding: 5px 10px; /* Ajusta el tamaño del botón */
+  font-size: 16px;
+  margin-right: 5px; /* Espacio entre los botones de cantidad */
+}

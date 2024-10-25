@@ -62,6 +62,63 @@ document.addEventListener('DOMContentLoaded', () => {
             console.error('Error al obtener las especificaciones del producto:', error);
         });
 
+
+        // Inicializar la cantidad en 1
+let quantity = 1;
+
+// Obtener elementos del DOM
+const quantityDisplay = document.getElementById('quantityDisplay'); // Asegúrate de que este ID coincida
+const increaseButton = document.getElementById('increaseButton'); // Botón de más
+const decreaseButton = document.getElementById('decreaseButton'); // Botón de menos
+const addToCartButton = document.getElementById('add-to-cart'); // Botón para añadir al carrito
+
+// Mostrar la cantidad inicial
+quantityDisplay.textContent = quantity;
+
+// Función para aumentar la cantidad
+increaseButton.addEventListener('click', function() {
+    quantity++;
+    quantityDisplay.textContent = quantity; // Actualiza el texto con la nueva cantidad
+});
+
+// Función para disminuir la cantidad
+decreaseButton.addEventListener('click', function() {
+    if (quantity > 1) { // Asegurarse de que la cantidad no sea menor que 1
+        quantity--;
+        quantityDisplay.textContent = quantity; // Actualiza el texto con la nueva cantidad
+    }
+});
+
+
+        // Funcionalidad para el botón "Comprar"
+document.getElementById('buy').addEventListener('click', function() {
+    // Obtener elementos por su ID
+    const productNameElement = document.getElementById('product-name');
+    const productDescriptionElement = document.getElementById('product-description');
+    const productPriceElement = document.getElementById('product-price');
+    const productSoldCountElement = document.getElementById('product-sold-count');
+    const productCategoryElement = document.getElementById('product-category');
+    const mainProductImage = document.getElementById('main-product-image');
+
+    // Obtener información del producto
+    const productInfo = {
+        id: selectedProductId, // Asegúrate de que selectedProductId esté definido y tenga el valor correcto
+        name: productNameElement.textContent,
+        description: productDescriptionElement.textContent,
+        price: productPriceElement.textContent,
+        soldCount: productSoldCountElement.textContent,
+        category: productCategoryElement.textContent,
+        image: mainProductImage.src // Suponiendo que deseas almacenar la imagen principal
+    };
+
+    // Almacenar la información del producto en localStorage
+    localStorage.setItem('productInfo', JSON.stringify(productInfo));
+
+    // Redirigir a cart.html
+    window.location.href = 'cart.html';
+});
+
+
         let toggle=document.getElementById('toggle');
         let labeltoggle=document.getElementById('togglelabel');
 
@@ -244,3 +301,4 @@ toggleButton.addEventListener('click', () => {
 function updateButtonText(mode) {
    toggleButton.textContent = mode === 'night-mode' ? 'Modo Día' : 'Modo Noche';
   }
+  

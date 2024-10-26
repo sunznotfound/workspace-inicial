@@ -222,14 +222,11 @@ a.custom-card:hover {
 }
 
 /*---ESTILO DE PRODUCTS.HTML---*/
-.titleproducts{
+#titleproducts{
   text-align: center;
+  margin-top: 3%;
 }
 
-.subtitleproducts{
-  font-style: italic;
-  text-align: center;
-}
 
 .products-container {
   max-width: 1200px;

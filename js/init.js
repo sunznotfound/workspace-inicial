@@ -41,9 +41,9 @@ let getJSONData = function(url){
 }
 
 document.addEventListener("DOMContentLoaded", function() {
-  const isLoggedIn = sessionStorage.getItem("isLoggedIn");
+  const registrado = localStorage.getItem("correoUsuario");
 
-   if (!isLoggedIn) {
+   if (!registrado) {
       window.location.replace("login.html");
     }
 });

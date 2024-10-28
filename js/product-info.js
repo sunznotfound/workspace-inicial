@@ -61,31 +61,8 @@ document.addEventListener('DOMContentLoaded', () => {
         .catch(error => {
             console.error('Error al obtener las especificaciones del producto:', error);
         });
-
-        let toggle=document.getElementById('toggle');
-        let labeltoggle=document.getElementById('togglelabel');
-
-        if (localStorage.getItem('dark-mode') === 'enabled') {
-            document.body.classList.add('dark');
-            toggle.checked = true; // Marca el toggle como seleccionado
-            labeltoggle.innerHTML = '<i class="fa-solid fa-sun"></i>'; // Cambia a ícono de sol
-        } else {
-            labeltoggle.innerHTML = '<i class="fa-solid fa-moon"></i>'; // Cambia a ícono de luna
-        }
-
-
-        toggle.addEventListener('change',(event)=>{
-            let checked=event.target.checked;
-            document.body.classList.toggle('dark', checked);
-            if(checked){
-                localStorage.setItem('dark-mode', 'enabled')
-                labeltoggle.innerHTML='<i class="fa-solid fa-sun"></i>';
-            } else{
-                localStorage.setItem('dark-mode', 'disabled');
-                labeltoggle.innerHTML='<i class="fa-solid fa-moon"></i>';
-            }
+        
     });
-});
 
 // Mostrar productos relacionados
 function displayRelatedProducts(relatedProducts) {

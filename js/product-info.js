@@ -201,23 +201,3 @@ document.getElementById('publishReview').addEventListener('click', function(){
     }
 });
 
-// Funcionalidad modo dia/noche
-const toggleButton=document.getElementById('toggle-mode');
-const body=document.body;
-const saved=localStorage.getItem('theme') || 'day-mode';
-body.classList.add(saved);
-updateButtonText(saved);
-
-
-toggleButton.addEventListener('click', () => {
-    const currentMode = body.classList.contains('night-mode') ? 'night-mode' : 'day-mode';
-    const newMode = currentMode === 'night-mode' ? 'day-mode' : 'night-mode';
-
-    body.classList.replace(currentMode, newMode);
-    localStorage.setItem('theme', newMode);
-    updateButtonText(newMode);
-});
-
-function updateButtonText(mode) {
-   toggleButton.textContent = mode === 'night-mode' ? 'Modo Día' : 'Modo Noche';
-  }

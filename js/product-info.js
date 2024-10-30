@@ -61,7 +61,61 @@ document.addEventListener('DOMContentLoaded', () => {
         .catch(error => {
             console.error('Error al obtener las especificaciones del producto:', error);
         });
-        
+
+// Funcionalidad para el botón "Comprar"
+document.getElementById('buy').addEventListener('click', function() {
+    // Obtener elementos por su ID
+    const productNameElement = document.getElementById('product-name');
+    const productDescriptionElement = document.getElementById('product-description');
+    const productPriceElement = document.getElementById('product-price');
+    const productSoldCountElement = document.getElementById('product-sold-count');
+    const productCategoryElement = document.getElementById('product-category');
+    const mainProductImage = document.getElementById('main-product-image');
+    
+    // Asegúrate de que selectedProductId esté definido y tenga el valor correcto
+    const selectedProductId = "123"; // Cambia este valor según corresponda
+
+    // Obtener información del producto
+    const productInfo = {
+        id: selectedProductId,
+        name: productNameElement.textContent,
+        description: productDescriptionElement.textContent,
+        price: productPriceElement.textContent,
+        soldCount: productSoldCountElement.textContent,
+        category: productCategoryElement.textContent,
+        image: mainProductImage.src,
+    };
+
+    // Almacenar la información del producto en localStorage
+    localStorage.setItem('productInfo', JSON.stringify(productInfo));
+
+    // Redirigir a cart.html
+    window.location.href = 'cart.html';
+});
+
+
+        let toggle=document.getElementById('toggle');
+        let labeltoggle=document.getElementById('togglelabel');
+
+        if (localStorage.getItem('dark-mode') === 'enabled') {
+            document.body.classList.add('dark');
+            toggle.checked = true; // Marca el toggle como seleccionado
+            labeltoggle.innerHTML = '<i class="fa-solid fa-sun"></i>'; // Cambia a ícono de sol
+        } else {
+            labeltoggle.innerHTML = '<i class="fa-solid fa-moon"></i>'; // Cambia a ícono de luna
+        }
+
+
+        toggle.addEventListener('change',(event)=>{
+            let checked=event.target.checked;
+            document.body.classList.toggle('dark', checked);
+            if(checked){
+                localStorage.setItem('dark-mode', 'enabled')
+                labeltoggle.innerHTML='<i class="fa-solid fa-sun"></i>';
+            } else{
+                localStorage.setItem('dark-mode', 'disabled');
+                labeltoggle.innerHTML='<i class="fa-solid fa-moon"></i>';
+            }
     });
 
 // Mostrar productos relacionados
@@ -76,7 +130,7 @@ function displayRelatedProducts(relatedProducts) {
                     <img src="${relatedProduct.image}" class="card-img-top" alt="${relatedProduct.name}">
                     <div class="card-body">
                         <h5 class="card-title">${relatedProduct.name}</h5>
-                        <a href="#" class="btn btn-primary ver-producto-relacionado" data-product-id="${relatedProduct.id}">Ver Producto</a>
+                        <a href="#" class="btn btn-light ver-producto-relacionado" data-product-id="${relatedProduct.id}" style="background-color:#f6c196;">Ver Producto</a>
                     </div>
                 </div>
             </div>
@@ -201,3 +255,24 @@ document.getElementById('publishReview').addEventListener('click', function(){
     }
 });
 
+// Funcionalidad modo dia/noche
+const toggleButton=document.getElementById('toggle-mode');
+const body=document.body;
+const saved=localStorage.getItem('theme') || 'day-mode';
+body.classList.add(saved);
+updateButtonText(saved);
+
+
+toggleButton.addEventListener('click', () => {
+    const currentMode = body.classList.contains('night-mode') ? 'night-mode' : 'day-mode';
+    const newMode = currentMode === 'night-mode' ? 'day-mode' : 'night-mode';
+
+    body.classList.replace(currentMode, newMode);
+    localStorage.setItem('theme', newMode);
+    updateButtonText(newMode);
+});
+
+function updateButtonText(mode) {
+   toggleButton.textContent = mode === 'night-mode' ? 'Modo Día' : 'Modo Noche';
+  }
+  

@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const limpiarButton = document.getElementById('limpiar'); // Botón para limpiar filtros
   let products = []; // Array para almacenar los productos
   let minPrice, maxPrice;
+  const tituloCategorias = document.getElementById('titleproducts');
 
   // Obtiene el identificador de categoría desde el almacenamiento local
   const catID = localStorage.getItem('catID');
@@ -27,6 +28,8 @@ document.addEventListener('DOMContentLoaded', () => {
       products = data.products; // Almacena los productos en el array
       displayProducts(products); // Muestra los productos en la página
       spinner.style.display = 'none'; // Oculta el spinner
+      tituloCategorias.innerText= data.catName;
+
     })
     .catch(error => {
       console.error('There has been a problem with your fetch operation:', error);
@@ -72,6 +75,7 @@ document.addEventListener('DOMContentLoaded', () => {
       localStorage.setItem('selectedProductId', productId); // Guardar el ID en localStorage
       window.location.href = 'product-info.html'; // Redirigir a product-info.html
     });
+
   });
 }
 

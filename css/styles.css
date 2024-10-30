@@ -222,15 +222,12 @@ a.custom-card:hover {
 }
 
 /*---ESTILO DE PRODUCTS.HTML---*/
-.titleproducts{
+#titleproducts{
   text-align: center;
   padding: 18px;
+  margin-top: 3%;
 }
 
-.subtitleproducts{
-  font-style: italic;
-  text-align: center;
-}
 
 .products-container {
   max-width: 1200px;
@@ -799,15 +796,22 @@ input[type="text"], textarea{
   color: #333; 
 }
 
-/*ESTILO BOTONES*/
-.btn{
+/*ESTILO BOTONES PERFIL*/
+#botonGuardar, #deleteButton, #editButton{
   background-color: #b4b1b148;
   border-radius: 7%;
   box-shadow: 2px 2px 2px #626262;
 }
-.btn:hover{
+#botonGuardar:hover{
   background-color: #ff7300;
 }
+#deleteButton:hover{
+  background-color: #ff7300;
+} 
+#editButton:hover{
+  background-color: #ff7300;
+}
+
 
 /* ESTILO SWITCH MODO DARK/LIGHT */
 #toggle{
@@ -1081,8 +1085,65 @@ body.darkMode .btn-naranja:hover {
       font-size: x-small;
     }
 
+    /* ESTILO SWITCH MODO DARK/LIGHT */
+.checkbox{
+  opacity:0;
+  position: absolute;
+  display: none !important;
+}
+.checkbox-label{
+  background-color: #111;
+  width: 50px;
+  height: 26px;
+  border-radius: 50px;
+  position: relative;
+  padding: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.fa-moon{color: #f1c40f;}
+.fa-sun{color: #f39c12;}
+.checkbox-label .ball{
+  background-color: #fff;
+  width: 22px;
+  height: 22px;
+  position: absolute;
+  left: 2px;
+  top: 2px;
+  border-radius: 50%;
+  transition: transform 0.2s linear;
+}
+.checkbox:checked + .checkbox-label .ball{
+  transform: translateX(24px);
+}
+#checkbox{display: none;}
     
 
+/*Estilos para carrito en products.html*/
+
+#contador-carrito {
+  background-color: #ff741e;
+  border-radius: 100%;
+  display: inline-block;
+  width: 20px;
+  aspect-ratio: 1;
+  text-align: center;
+  line-height: 20px;
+  position: absolute;
+}
+
+#empty-cart-message {
+  margin-top: 100px;
+}
  
+#buy {
+  background-color: #ff741e;
+  border-color: #ff741e;
+  margin-top: 10px;
+}
 
-
+#buy:hover {
+  background-color: #474747;
+  border-color: #ff741e;
+}

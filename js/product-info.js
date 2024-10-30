@@ -117,7 +117,6 @@ document.getElementById('buy').addEventListener('click', function() {
                 labeltoggle.innerHTML='<i class="fa-solid fa-moon"></i>';
             }
     });
-});
 
 // Mostrar productos relacionados
 function displayRelatedProducts(relatedProducts) {

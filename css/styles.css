@@ -224,6 +224,7 @@ a.custom-card:hover {
 /*---ESTILO DE PRODUCTS.HTML---*/
 #titleproducts{
   text-align: center;
+  padding: 18px;
   margin-top: 3%;
 }
 
@@ -520,6 +521,10 @@ input[type="text"], textarea{
   width: 100%;
 }
 
+#loginForm .form-control {
+  font-style: normal !important;
+}
+
 .publicar{
   border-color: white solid;
   border: 3px;
@@ -814,9 +819,10 @@ input[type="text"], textarea{
   position: absolute;
   display: none !important;
 }
+
 #togglelabel{
   background-color: #111;
-  width: 50px;
+  width: 26px;
   height: 26px;
   border-radius: 50px;
   position: relative;
@@ -830,7 +836,7 @@ input[type="text"], textarea{
 .fa-moon{color: #f1c40f;}
 .fa-sun{color: #f39c12;}
 
-.checkbox-label .ball{
+#togglelabel .ball{
   background-color: #fff;
   width: 22px;
   height: 22px;
@@ -845,29 +851,201 @@ input[type="text"], textarea{
   transform: translateX(24px);
 }
 
-body.dark{
-  background-color: #333;
-  color: white;
-  transition: all 1.5s ease;
-}
-
-body.dark p,
-body.dark h1,
-body.dark h2 {
-  color: white !important;
-}
-
-body.dark .product-details{
-  background-color: #333;
-  transition: all 1.5s ease;
-}
-
 body {
   background-color: white;
   color: black;
   transition: all 1.5s ease;
 }
 
+body.darkMode{
+  background-color: #191b26;
+  color: white;
+  transition: all 1.5s ease;
+}
+
+body.darkMode .login-container {
+  background-color: #191b26;
+  color: white;
+  border: 2px solid #000006;
+}
+
+body.darkMode .form-control {
+  background-color: #313245;
+  color: white;
+  border: 1px solid #000006;
+}
+
+body.darkMode .form-check-label {
+  color: white;
+}
+
+body.darkMode .btn-naranja {
+  background-color: #313245;
+  border-color: grey;
+  color: white;
+}
+
+body.darkMode .btn-naranja:hover {
+  background-color: #756a90;
+  border-color: #756a90;
+}
+
+.darkMode a {
+  color: white;
+}
+
+.darkMode .card {
+  background-color: #000006 !important;
+  color: #ffffff !important;
+}
+
+.darkMode .btn:hover{
+  background-color: #756a90;
+}
+
+.darkMode .btn-light {
+  background-color: #313245;
+  color: white;
+}
+
+.darkMode .navbar-toggler:hover {
+  background-color: #756a90;
+}
+
+.darkMode .dropdown-menu {
+  background-color: #756a90;
+}
+
+.darkMode .dropdown-toggle {
+  background-color: #191b26;
+}
+
+.darkMode .card-body:hover {
+  background-color: rgba(117, 106, 144, 0.8);
+  color: white;
+}
+
+.darkMode .categorias {
+  color: white;
+}
+
+.darkMode .btn-light{
+  border-color: #191b26;
+}
+
+.darkMode .form-control::placeholder {
+  color: white;
+}
+
+.darkMode .btn-sm {
+  color: white;
+  background-color: #313245;
+  text-decoration: none;
+}
+
+.darkMode #cat-list-container .list-group-item {
+  background-color: #191b26;
+  border-color: #000006;
+  color: white;
+}
+
+.darkMode .titleproducts {
+  color: white;
+  padding: 18px;
+}
+
+.darkMode .product-details {
+  background-color: #191b26;
+  border-color: #313245;
+}
+
+.darkMode .product-details * {
+  color: white;
+}
+
+.darkMode #main-product-image {
+  background-color: #191b26;
+  border-color: #313245;
+}
+
+.darkMode #thumbnail-1, #thumbnail-2, #thumbnail-3 {
+  border-color: #313245;
+  padding: 5px;
+}
+
+.darkMode .reviews input[type="text"], textarea {
+  background-color: #313245;
+  color: white;
+  border: 1px solid #000006;
+}
+
+.darkMode .reviews input[type="text"]::placeholder, textarea::placeholder {
+  color: white;
+}
+
+.darkMode .publicar {
+  background-color: #756a90;
+  color: white;
+}
+
+.darkMode .publicar:hover {
+  background-color: rgba(117, 106, 144, 0.8);
+}
+
+.darkMode .instrucciones{
+  color: #a3a5a1;
+}
+
+.darkMode #reviewText {
+  border-color: #000006;
+}
+
+.darkMode .contenedor-reseñas {
+  background-color: #313245;
+}
+
+.darkMode .contenedor-reseñas h1 {
+  color: white !important;
+}
+
+.darkMode .filtros input[type="text"]{
+  background-color: #756a90;
+  border-color: #000006;
+}
+
+.darkMode .filtros input[type="text"]::placeholder{
+  color: white;
+}
+
+.darkMode .filtro-calificacion {
+  background-color: #756a90;
+  color: white;
+  border-color: #000006;
+}
+
+.darkMode #comentarios {
+  background-color: #756a90;
+}
+
+.darkMode #editButton, #deleteButton {
+  color: white;
+}
+
+.darkMode #contenedorform {
+  background-color: #313245;
+}
+
+.darkMode #miinfo {
+  color: white;
+}
+
+.darkMode .form-control{
+  background-color: #756a90 !important;
+}
+
+.darkMode .mb-3{
+  color:white;
+}
 
 @media (max-width: 990px) {
   .dropdown {

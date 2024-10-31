@@ -12,15 +12,9 @@ document.addEventListener('DOMContentLoaded', () => {
     ];
 
     const selectedProductId = localStorage.getItem('selectedProductId');
-    const catID = localStorage.getItem('catID'); // Obtener catID de localStorage
-
+    
     if (!selectedProductId) {
         alert('No se ha seleccionado un producto');
-        return;
-    }
-
-    if (!catID) {
-        alert('No se ha seleccionado una categoría');
         return;
     }
 
@@ -29,94 +23,49 @@ document.addEventListener('DOMContentLoaded', () => {
     fetch(url)
         .then(response => response.json())
         .then(product => {
-            // Actualización de la información del producto
             productNameElement.textContent = product.name;
             productDescriptionElement.textContent = product.description;
             productPriceElement.textContent = `$${product.cost}`;
             productSoldCountElement.textContent = product.soldCount;
             productCategoryElement.textContent = product.category;
-            mainProductImage.src = product.images[0]; // Imagen principal
+            mainProductImage.src = product.images[0];
 
-            // Cargar miniaturas
             thumbnails.forEach((thumbnail, index) => {
                 thumbnail.src = product.images[index + 1] || product.images[0];
             });
 
-            // Llamar a la función para mostrar productos relacionados
             displayRelatedProducts(product.relatedProducts);
 
-            // Obtener comentarios del producto
             const commentsUrl = `https://japceibal.github.io/emercado-api/products_comments/${selectedProductId}.json`;
             fetch(commentsUrl)
                 .then(response => response.json())
                 .then(comments => {
-                    mostrarComentarios(comments); // Llamar a la función para mostrar comentarios
-                    manejarFiltro(comments); // Manejar el filtro de calificaciones
-                    manejarBusqueda(comments); // Manejar la búsqueda
+                    mostrarComentarios(comments);
+                    manejarFiltro(comments);
+                    manejarBusqueda(comments);
                 })
                 .catch(error => {
-                    console.error('Error al obtener los comentarios del producto:', error);
+                    console.error('Error al obtener los comentarios:', error);
                 });
         })
         .catch(error => {
-            console.error('Error al obtener las especificaciones del producto:', error);
+            console.error('Error al obtener el producto:', error);
         });
 
-// Funcionalidad para el botón "Comprar"
-document.getElementById('buy').addEventListener('click', function() {
-    // Obtener elementos por su ID
-    const productNameElement = document.getElementById('product-name');
-    const productDescriptionElement = document.getElementById('product-description');
-    const productPriceElement = document.getElementById('product-price');
-    const productSoldCountElement = document.getElementById('product-sold-count');
-    const productCategoryElement = document.getElementById('product-category');
-    const mainProductImage = document.getElementById('main-product-image');
-    
-    // Asegúrate de que selectedProductId esté definido y tenga el valor correcto
-    const selectedProductId = "123"; // Cambia este valor según corresponda
-
-    // Obtener información del producto
-    const productInfo = {
-        id: selectedProductId,
-        name: productNameElement.textContent,
-        description: productDescriptionElement.textContent,
-        price: productPriceElement.textContent,
-        soldCount: productSoldCountElement.textContent,
-        category: productCategoryElement.textContent,
-        image: mainProductImage.src,
-    };
-
-    // Almacenar la información del producto en localStorage
-    localStorage.setItem('productInfo', JSON.stringify(productInfo));
-
-    // Redirigir a cart.html
-    window.location.href = 'cart.html';
-});
-
-
-        let toggle=document.getElementById('toggle');
-        let labeltoggle=document.getElementById('togglelabel');
-
-        if (localStorage.getItem('dark-mode') === 'enabled') {
-            document.body.classList.add('dark');
-            toggle.checked = true; // Marca el toggle como seleccionado
-            labeltoggle.innerHTML = '<i class="fa-solid fa-sun"></i>'; // Cambia a ícono de sol
-        } else {
-            labeltoggle.innerHTML = '<i class="fa-solid fa-moon"></i>'; // Cambia a ícono de luna
-        }
-
-
-        toggle.addEventListener('change',(event)=>{
-            let checked=event.target.checked;
-            document.body.classList.toggle('dark', checked);
-            if(checked){
-                localStorage.setItem('dark-mode', 'enabled')
-                labeltoggle.innerHTML='<i class="fa-solid fa-sun"></i>';
-            } else{
-                localStorage.setItem('dark-mode', 'disabled');
-                labeltoggle.innerHTML='<i class="fa-solid fa-moon"></i>';
-            }
+    document.getElementById('buy').addEventListener('click', function() {
+        const productInfo = {
+            id: selectedProductId,
+            name: productNameElement.textContent,
+            description: productDescriptionElement.textContent,
+            price: productPriceElement.textContent,
+            soldCount: productSoldCountElement.textContent,
+            category: productCategoryElement.textContent,
+            image: mainProductImage.src,
+        };
+        localStorage.setItem('productInfo', JSON.stringify(productInfo));
+        window.location.href = 'cart.html';
     });
+});
 
 // Mostrar productos relacionados
 function displayRelatedProducts(relatedProducts) {
@@ -130,7 +79,7 @@ function displayRelatedProducts(relatedProducts) {
                     <img src="${relatedProduct.image}" class="card-img-top" alt="${relatedProduct.name}">
                     <div class="card-body">
                         <h5 class="card-title">${relatedProduct.name}</h5>
-                        <a href="#" class="btn btn-light ver-producto-relacionado" data-product-id="${relatedProduct.id}" style="background-color:#f6c196;">Ver Producto</a>
+                        <a href="#" class="btn btn-primary ver-producto-relacionado" data-product-id="${relatedProduct.id}">Ver Producto</a>
                     </div>
                 </div>
             </div>
@@ -210,69 +159,21 @@ function manejarBusqueda(comments) {
 }
 
 
-// Agregar calificaciones
-document.getElementById('publishReview').addEventListener('click', function(){
-    const estrellas=document.querySelector('input[name="estrellas"]:checked');
-    const reviewTitle=document.getElementById('reviewTitle').value;
-    const reviewText=document.getElementById('reviewText').value;
-    const reviewUser=document.getElementById('reviewUser').value;
+// Modo noche/día simplificado
+const toggleButton = document.getElementById('toggle-mode');
+const body = document.body;
+const savedTheme = localStorage.getItem('theme') || 'day-mode';
+body.classList.add(savedTheme);
 
-    if (estrellas && reviewTitle && reviewText && reviewUser){
-        const newReview=document.createElement('div');
-        newReview.classList.add('reseña');
-
-        //Obtener la fecha actual
-        const fechaActual = new Date().toLocaleString('es-ES');
-
-        const estrellasHtml = '★'.repeat(estrellas.value) + '☆'.repeat(5 - estrellas.value);
-
-        newReview.innerHTML = `
-            <div class="calificacion">${estrellasHtml}</div>
-            <h3>${reviewText}</h3>
-            <div class="detalles">
-                <span>${fechaActual}</span><br>
-                <span>${reviewUser}</span>
-            </div>
-        `;
-
-        // Agregar la nueva reseña al contenedor de comentarios
-        document.getElementById('comentarios').appendChild(newReview);
-
-        // Borrar datos del formulario
-        document.getElementById('reviewTitle').value = '';
-        document.getElementById('reviewText').value = '';
-        document.getElementById('reviewUser').value = '';
-        
-        
-        const checkedStar = document.querySelector('input[name="estrellas"]:checked');
-        if (checkedStar) {
-            checkedStar.checked = false;
-        }
-        
-        alert('¡Reseña publicada exitosamente!');    
-    } else {
-        alert ('Los campos con * son obligatorios.');
-    }
-});
-
-// Funcionalidad modo dia/noche
-const toggleButton=document.getElementById('toggle-mode');
-const body=document.body;
-const saved=localStorage.getItem('theme') || 'day-mode';
-body.classList.add(saved);
-updateButtonText(saved);
-
+function updateButtonText(mode) {
+    toggleButton.textContent = mode === 'night-mode' ? 'Modo Día' : 'Modo Noche';
+}
+updateButtonText(savedTheme);
 
 toggleButton.addEventListener('click', () => {
     const currentMode = body.classList.contains('night-mode') ? 'night-mode' : 'day-mode';
     const newMode = currentMode === 'night-mode' ? 'day-mode' : 'night-mode';
-
     body.classList.replace(currentMode, newMode);
     localStorage.setItem('theme', newMode);
     updateButtonText(newMode);
-});
-
-function updateButtonText(mode) {
-   toggleButton.textContent = mode === 'night-mode' ? 'Modo Día' : 'Modo Noche';
-  }
-  
+}); 

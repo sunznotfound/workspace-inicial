@@ -90,7 +90,10 @@ document.addEventListener('DOMContentLoaded', () => {
         localStorage.setItem('productInfo', JSON.stringify(productInfo));
 
         // Redirigir a cart.html
+    if (confirm('Producto agregado al carrito. ¿Deseas ir al carrito?')) {
         window.location.href = 'cart.html';
+    }
+    window.location.href = 'cart.html';
     });
 });
 

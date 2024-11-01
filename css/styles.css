@@ -1147,3 +1147,44 @@ body.darkMode .btn-naranja:hover {
   background-color: #474747;
   border-color: #ff741e;
 }
+
+/**estilos para cart.html **/
+#cartTitle {
+  text-align: center;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: lighter;
+}
+
+.bi-trash {
+  transition: color 0.6s ease;
+}
+
+.bi-trash:hover {
+  color: #5f010b !important;
+}
+
+.card-title, #total {
+  font-weight: lighter;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#carritoCaja {
+  background-color: #eaebec;
+  border-radius: 10px;
+  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.2); /* Sombra suave */
+}
+
+#endShop {
+  background-color: #f87330;
+  border-color: #ffa84c;
+}
+
+#endShop:hover {
+  background-color: #ffb56b;
+  color: #111;
+}
+
+#contadorColor1, #contadorColor2 {
+  background-color: #fc8950;
+  border-color: #ffa84c;
+}

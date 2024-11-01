@@ -222,14 +222,12 @@ a.custom-card:hover {
 }
 
 /*---ESTILO DE PRODUCTS.HTML---*/
-.titleproducts{
+#titleproducts{
   text-align: center;
+  padding: 18px;
+  margin-top: 3%;
 }
 
-.subtitleproducts{
-  font-style: italic;
-  text-align: center;
-}
 
 .products-container {
   max-width: 1200px;
@@ -428,6 +426,8 @@ h3{
   justify-content: center;
   align-items: center;
   flex-direction: row-reverse;
+  gap: 10px;
+  flex-wrap: wrap;
 }
 
 #star-rating input {
@@ -455,6 +455,7 @@ h3{
   margin-left: 10px;
   font-size: 14px;
   color: gray;
+  text-align: center;
 }
 
 label {
@@ -470,6 +471,9 @@ label {
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  display: block;
+  margin: 10px auto;
+  width: 80%;
 }
 
 button:hover {
@@ -477,17 +481,14 @@ button:hover {
 }
 
 .reviews {
-  border: rgb(0, 0, 0);
-  border: 2px solid;
+  border: 2px solid black;
   border-radius: 5px;
   padding: 20px;
   font-family: "Inter", sans-serif;
   position: relative;
-  bottom: 180px;
-  left: 630px;
-  width: 40%;
+  width: 90%;
+  margin: 20px auto;
   height: auto;
-
 }
 
 .instrucciones{
@@ -504,25 +505,24 @@ button:hover {
 
 h5{
   font-size: 25px;
-
 }
 
 h6{
   font-size: 20px;
-
 }
 
 input[type="text"], textarea{
   font-style: italic;
-  padding-left: 10px;
-  padding-right: 10px;
-  padding-bottom: 7px;
-  padding-top: 7px;
+  padding: 10px;
   border-color: black;
   border-radius: 5px;
   border: 1px solid;
   font-size: 13px;
   width: 100%;
+}
+
+#loginForm .form-control {
+  font-style: normal !important;
 }
 
 .publicar{
@@ -532,8 +532,6 @@ input[type="text"], textarea{
   color: #000;
   box-shadow: 2px 2px 5px rgba(128, 128, 128, 0.3);
   cursor: pointer;
-  display: block;
-  margin: 0 auto;
 }
 
 .publicar:hover{
@@ -768,6 +766,12 @@ input[type="text"], textarea{
   color: black;
 }
 
+#imgPerfil {
+  width: 250px; /* Ajusta el tamaño según sea necesario */
+  height: 250px; /* Asegura que la altura y el ancho sean iguales */
+  object-fit: cover; /* Esto recorta la imagen para que se ajuste al área circular */
+  border-radius: 50%; /* Hace que la imagen sea circular */
+ }
 
 /*ESTILO CONTENEDOR DE FORMULARIO Y TÍTULO H2 DE FORMULARIO*/
 #contenedorform{
@@ -792,25 +796,33 @@ input[type="text"], textarea{
   color: #333; 
 }
 
-/*ESTILO BOTONES*/
-.btn{
+/*ESTILO BOTONES PERFIL*/
+#botonGuardar, #deleteButton, #editButton{
   background-color: #b4b1b148;
   border-radius: 7%;
   box-shadow: 2px 2px 2px #626262;
 }
-.btn:hover{
+#botonGuardar:hover{
+  background-color: #ff7300;
+}
+#deleteButton:hover{
+  background-color: #ff7300;
+} 
+#editButton:hover{
   background-color: #ff7300;
 }
 
+
 /* ESTILO SWITCH MODO DARK/LIGHT */
-.checkbox{
+#toggle{
   opacity:0;
   position: absolute;
   display: none !important;
 }
-.checkbox-label{
+
+#togglelabel{
   background-color: #111;
-  width: 50px;
+  width: 26px;
   height: 26px;
   border-radius: 50px;
   position: relative;
@@ -818,10 +830,13 @@ input[type="text"], textarea{
   display: flex;
   justify-content: space-between;
   align-items: center;
+  cursor: pointer;
+
 }
 .fa-moon{color: #f1c40f;}
 .fa-sun{color: #f39c12;}
-.checkbox-label .ball{
+
+#togglelabel .ball{
   background-color: #fff;
   width: 22px;
   height: 22px;
@@ -831,10 +846,206 @@ input[type="text"], textarea{
   border-radius: 50%;
   transition: transform 0.2s linear;
 }
-.checkbox:checked + .checkbox-label .ball{
+
+#toggle:checked + #togglelabel .ball{
   transform: translateX(24px);
 }
-#checkbox{display: none;}
+
+body {
+  background-color: white;
+  color: black;
+  transition: all 1.5s ease;
+}
+
+body.darkMode{
+  background-color: #191b26;
+  color: white;
+  transition: all 1.5s ease;
+}
+
+body.darkMode .login-container {
+  background-color: #191b26;
+  color: white;
+  border: 2px solid #000006;
+}
+
+body.darkMode .form-control {
+  background-color: #313245;
+  color: white;
+  border: 1px solid #000006;
+}
+
+body.darkMode .form-check-label {
+  color: white;
+}
+
+body.darkMode .btn-naranja {
+  background-color: #313245;
+  border-color: grey;
+  color: white;
+}
+
+body.darkMode .btn-naranja:hover {
+  background-color: #756a90;
+  border-color: #756a90;
+}
+
+.darkMode a {
+  color: white;
+}
+
+.darkMode .card {
+  background-color: #000006 !important;
+  color: #ffffff !important;
+}
+
+.darkMode .btn:hover{
+  background-color: #756a90;
+}
+
+.darkMode .btn-light {
+  background-color: #313245;
+  color: white;
+}
+
+.darkMode .navbar-toggler:hover {
+  background-color: #756a90;
+}
+
+.darkMode .dropdown-menu {
+  background-color: #756a90;
+}
+
+.darkMode .dropdown-toggle {
+  background-color: #191b26;
+}
+
+.darkMode .card-body:hover {
+  background-color: rgba(117, 106, 144, 0.8);
+  color: white;
+}
+
+.darkMode .categorias {
+  color: white;
+}
+
+.darkMode .btn-light{
+  border-color: #191b26;
+}
+
+.darkMode .form-control::placeholder {
+  color: white;
+}
+
+.darkMode .btn-sm {
+  color: white;
+  background-color: #313245;
+  text-decoration: none;
+}
+
+.darkMode #cat-list-container .list-group-item {
+  background-color: #191b26;
+  border-color: #000006;
+  color: white;
+}
+
+.darkMode .titleproducts {
+  color: white;
+  padding: 18px;
+}
+
+.darkMode .product-details {
+  background-color: #191b26;
+  border-color: #313245;
+}
+
+.darkMode .product-details * {
+  color: white;
+}
+
+.darkMode #main-product-image {
+  background-color: #191b26;
+  border-color: #313245;
+}
+
+.darkMode #thumbnail-1, #thumbnail-2, #thumbnail-3 {
+  border-color: #313245;
+  padding: 5px;
+}
+
+.darkMode .reviews input[type="text"], textarea {
+  background-color: #313245;
+  color: white;
+  border: 1px solid #000006;
+}
+
+.darkMode .reviews input[type="text"]::placeholder, textarea::placeholder {
+  color: white;
+}
+
+.darkMode .publicar {
+  background-color: #756a90;
+  color: white;
+}
+
+.darkMode .publicar:hover {
+  background-color: rgba(117, 106, 144, 0.8);
+}
+
+.darkMode .instrucciones{
+  color: #a3a5a1;
+}
+
+.darkMode #reviewText {
+  border-color: #000006;
+}
+
+.darkMode .contenedor-reseñas {
+  background-color: #313245;
+}
+
+.darkMode .contenedor-reseñas h1 {
+  color: white !important;
+}
+
+.darkMode .filtros input[type="text"]{
+  background-color: #756a90;
+  border-color: #000006;
+}
+
+.darkMode .filtros input[type="text"]::placeholder{
+  color: white;
+}
+
+.darkMode .filtro-calificacion {
+  background-color: #756a90;
+  color: white;
+  border-color: #000006;
+}
+
+.darkMode #comentarios {
+  background-color: #756a90;
+}
+
+.darkMode #editButton, #deleteButton {
+  color: white;
+}
+
+.darkMode #contenedorform {
+  background-color: #313245;
+}
+
+.darkMode #miinfo {
+  color: white;
+}
+
+.darkMode .form-control{
+  background-color: #756a90 !important;
+}
+
+.darkMode .mb-3{
+  color:white;
+}
 
 @media (max-width: 990px) {
   .dropdown {
@@ -874,8 +1085,65 @@ input[type="text"], textarea{
       font-size: x-small;
     }
 
+    /* ESTILO SWITCH MODO DARK/LIGHT */
+.checkbox{
+  opacity:0;
+  position: absolute;
+  display: none !important;
+}
+.checkbox-label{
+  background-color: #111;
+  width: 50px;
+  height: 26px;
+  border-radius: 50px;
+  position: relative;
+  padding: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.fa-moon{color: #f1c40f;}
+.fa-sun{color: #f39c12;}
+.checkbox-label .ball{
+  background-color: #fff;
+  width: 22px;
+  height: 22px;
+  position: absolute;
+  left: 2px;
+  top: 2px;
+  border-radius: 50%;
+  transition: transform 0.2s linear;
+}
+.checkbox:checked + .checkbox-label .ball{
+  transform: translateX(24px);
+}
+#checkbox{display: none;}
     
 
+/*Estilos para carrito en products.html*/
+
+#contador-carrito {
+  background-color: #ff741e;
+  border-radius: 100%;
+  display: inline-block;
+  width: 20px;
+  aspect-ratio: 1;
+  text-align: center;
+  line-height: 20px;
+  position: absolute;
+}
+
+#empty-cart-message {
+  margin-top: 100px;
+}
  
+#buy {
+  background-color: #ff741e;
+  border-color: #ff741e;
+  margin-top: 10px;
+}
 
-
+#buy:hover {
+  background-color: #474747;
+  border-color: #ff741e;
+}

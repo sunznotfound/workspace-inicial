@@ -4,7 +4,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const uploadInput = document.getElementById('imageInput'); // Input para cargar imagen
     const editButton = document.getElementById('editButton');
     const deleteButton = document.getElementById('deleteButton');
-  
+    
+
+      // Mostrar el usuario en el NAVBAR
+      let usuarioDisplay = document.getElementById("usuarioDisplay");
+      let usuario = localStorage.getItem("correoUsuario");
+      if (usuarioDisplay && usuario) {
+          usuarioDisplay.textContent = usuario;
+      }
+
     // Mostrar imagen de perfil guardada en localStorage
     const savedImage = localStorage.getItem('profilePicture');
     if (savedImage) {
@@ -24,7 +32,6 @@ document.addEventListener('DOMContentLoaded', () => {
         reader.onload = function (event) {
           const base64Image = event.target.result;
           imgPerfil.src = base64Image; // Cambiar la imagen de perfil
-          localStorage.setItem('profilePicture', base64Image); // Guardar en localStorage
         };
         reader.readAsDataURL(file); // Convertir la imagen a base64
       }
@@ -38,26 +45,36 @@ document.addEventListener('DOMContentLoaded', () => {
   });
   
 
-
-
-
-
   //SECCIÓN DE FORMULARIO (INPUTS CON VALIDACIONES)
   document.addEventListener('DOMContentLoaded', () => {
     const profileForm = document.getElementById('profileForm');
-    const themeSwitch = document.getElementById('themeSwitch');
     const body = document.body;
-  
+    let correoUsuario = localStorage.getItem('correoUsuario'); 
+    const labeltoggle=document.getElementById('togglelabel');
+
     // Cargar datos de localStorage si existen
-    if (localStorage.getItem('profileData')) {
-      const profileData = JSON.parse(localStorage.getItem('profileData'));
+    if (localStorage.getItem(`profileData_${correoUsuario}`)) {
+      let profileData = JSON.parse(localStorage.getItem(`profileData_${correoUsuario}`));
       document.getElementById('firstName').value = profileData.firstName || '';
       document.getElementById('secondName').value = profileData.secondName || '';
       document.getElementById('lastName').value = profileData.lastName || '';
       document.getElementById('secondLastName').value = profileData.secondLastName || '';
       document.getElementById('email').value = profileData.email || '';
       document.getElementById('contactNumber').value = profileData.contactNumber || '';
-    } else {
+      document.getElementById('imgPerfil').src = profileData.profileImg || '';
+
+    if(profileData.themeSwitch === true) {
+          document.body.classList.add('darkMode');
+          toggle.checked = true; // Marca el toggle como seleccionado
+          labeltoggle.innerHTML = '<i class="fa-solid fa-sun"></i>'; // Cambia a ícono de sol
+    } else{
+      document.body.classList.remove('darkMode');
+        toggle.checked=false;
+        labeltoggle.innerHTML = '<i class="fa-solid fa-moon"></i>'; // Cambia a ícono de luna
+    }
+  } 
+    else {
+      
       // Prellenar el campo email con el ingresado en login (si existe)
       document.getElementById('email').value = localStorage.getItem('correoUsuario') || '';
     }
@@ -73,30 +90,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
       // Si el formulario es válido, guardar datos en localStorage
       if (profileForm.checkValidity()) {
-        const profileData = {
+        let correoUsuario = localStorage.getItem('correoUsuario'); 
+        let profileData = {
           firstName: document.getElementById('firstName').value.trim(),
           secondName: document.getElementById('secondName').value.trim(),
           lastName: document.getElementById('lastName').value.trim(),
           secondLastName: document.getElementById('secondLastName').value.trim(),
           email: document.getElementById('email').value.trim(),
-          contactNumber: document.getElementById('contactNumber').value.trim()
+          contactNumber: document.getElementById('contactNumber').value.trim(),
+          profileImg: imgPerfil.src,
+          themeSwitch: document.getElementById('toggle').checked
         };
 
-        localStorage.setItem('profileData', JSON.stringify(profileData));
-        alert('Datos guardados exitosamente.');
+        localStorage.setItem(`profileData_${correoUsuario}`, JSON.stringify(profileData));
+          alert('Datos guardados exitosamente.');
       }
     });
 
-    // Comprobar el estado del interruptor de tema en localStorage
-    const currentTheme = localStorage.getItem('theme');
-    if (currentTheme === 'dark') {
-      body.classList.add('bg-dark', 'text-white');
-      themeSwitch.checked = true;
-    }
-
-    // En el futuro agregar funcionalidad para cambiar el tema (dark/light) al activar el interruptor
     
-
 
 
     });

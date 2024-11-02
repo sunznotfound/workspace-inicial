@@ -1,25 +1,18 @@
 document.addEventListener('DOMContentLoaded', function() {
+    const correoUsuario = localStorage.getItem('correoUsuario');
+    let cartProducts = JSON.parse(localStorage.getItem(`carrito_${correoUsuario}`)) || [];
     const cartContainer = document.getElementById('cart-container');
-     
-    // Obtener el carrito del localStorage o crear uno nuevo si no existe
-    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const purchaseSummary = document.getElementById('purchase-summary');
+ 
+    // Mostrar el usuario en el NAVBAR
+ let usuarioDisplay = document.getElementById("usuarioDisplay");
+ let usuario = localStorage.getItem("correoUsuario");
+ if (usuarioDisplay && usuario) {
+     usuarioDisplay.textContent = usuario;
+ }
 
-    function displayCart() {
-        if (cart.length === 0) {
-            cartContainer.innerHTML = `
-                <div class="alert alert-info text-center">
-                    <p>Tu carrito está vacío</p>
-                    <a href="products.html" class="btn btn-primary">Ir a Productos</a>
-                </div>`;
-            return;
-        }
-    }
-
-    // Obtener el producto del localStorage
-    const productInfoStr = localStorage.getItem('productInfo');
-
-    if (!productInfoStr) {
-        // Si no hay producto, mostrar mensaje de carrito vacío
+    // Mostrar el carrito o mensaje de vacío
+    if (cartProducts.length === 0) {
         cartContainer.innerHTML = `
             <div class="alert alert-info text-center">
                 <p>Tu carrito está vacío</p>
@@ -28,14 +21,14 @@ document.addEventListener('DOMContentLoaded', function() {
         return;
     }
 
-    try {
-        const productInfo = JSON.parse(productInfoStr);
-        const quantity = parseInt(localStorage.getItem('quantity') || '1');
-        const price = parseFloat(productInfo.price.replace('$', ''));
+    // Generar contenido del carrito
+    cartContainer.innerHTML = '';
+    cartProducts.forEach((cartProduct, index) => {
+        const quantity = cartProduct.quantity || 1;
+        const price = parseFloat(cartProduct.price.replace('$', ''));
         const subtotal = price * quantity;
-
-        // Crear la tabla del carrito
-        cartContainer.innerHTML = `
+        
+        cartContainer.innerHTML += `
             <div class="table-responsive">
                 <table class="table" id="carritoCaja">
                     <thead>
@@ -45,114 +38,98 @@ document.addEventListener('DOMContentLoaded', function() {
                             <th>Costo</th>
                             <th>Cantidad</th>
                             <th>Subtotal</th>
+                            <th>Acción</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td><img src="${productInfo.image}" alt="${productInfo.name}" style="max-width: 100px;"></td>
-                            <td>${productInfo.name}</td>
-                            <td>${productInfo.price}</td>
+                        <tr data-index="${index}">
+                            <td><img src="${cartProduct.image}" alt="${cartProduct.name}" style="max-width: 100px;"></td>
+                            <td>${cartProduct.name}</td>
+                            <td>${cartProduct.price}</td>
                             <td>
                                 <div class="quantity-controls">
-                                    <button class="btn btn-sm btn-secondary" id="contadorColor1" onclick="updateQuantity(-1)">-</button>
-                                    <span id="quantity">${quantity}</span>
-                                    <button class="btn btn-sm btn-secondary" id="contadorColor1" onclick="updateQuantity(1)">+</button>
+                                    <button class="btn btn-sm btn-secondary" onclick="updateQuantity(${index}, -1)">-</button>
+                                    <span id="quantity-${index}">${quantity}</span>
+                                    <button class="btn btn-sm btn-secondary" onclick="updateQuantity(${index}, 1)">+</button>
                                 </div>
                             </td>
-                            <td id="subtotal">$${subtotal.toFixed(2)}</td>
+                            <td id="subtotal-${index}">$${subtotal.toFixed(2)}</td>
                             <td>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" onclick="removeFromCart()" class="bi bi-trash" viewBox="0 0 16 16" id="trash" style="cursor: pointer; color: #dc3545;">
-                                    <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z"/>
-                                    <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z"/>
-                                </svg>
+                                <button class="btn btn-danger btn-sm" onclick="removeFromCart(${index})">Eliminar</button>
                             </td>
                         </tr>
                     </tbody>
                 </table>
-            </div>
+            </div>`;
+    });
 
-            <div class="row justify-content-end">
-                <div class="col-md-4">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">RESUMEN DE COMPRA</h5>
-                            <p class="card-text">Subtotal: $${subtotal.toFixed(2)}</p>
-                            <p class="card-text">Envío: $0.00</p>
-                            <hr>
-                            <h5 id="total">TOTAL: $${subtotal.toFixed(2)}</h5>
-                            <button class="btn btn-primary w-100" onclick="checkout()" id="endShop">Finalizar compra</button>
-                        </div>
+    // Insertar el resumen de compra debajo de todos los productos
+    purchaseSummary.innerHTML = `
+        <div class="row justify-content-end">
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">RESUMEN DE COMPRA</h5>
+                        <p class="card-text">Subtotal: $<span id="subtotal-value">0.00</span></p>
+                        <p class="card-text">Envío: $0.00</p>
+                        <hr>
+                        <h5 id="total">TOTAL: $0.00</h5>
+                        <button class="btn btn-primary w-100" onclick="checkout()" id="endShop">Finalizar compra</button>
                     </div>
                 </div>
-            </div>`;
-    } catch (error) {
-        console.error('Error al procesar la información del carrito:', error);
-        cartContainer.innerHTML = `
-            <div class="alert alert-danger">
-                Error al cargar el carrito. Por favor, intenta nuevamente.
-            </div>`;
-    }
+            </div>
+        </div>`;
+
+    // Calcular y mostrar el total
+    updateTotal();
 });
 
-function removeFromCart() {
+// Función para actualizar la cantidad
+function updateQuantity(index, change) {
+    let cartProducts = JSON.parse(localStorage.getItem(`carrito_${localStorage.getItem('correoUsuario')}`)) || [];
+    let product = cartProducts[index];
+    let quantity = Math.max(1, (product.quantity || 1) + change);
+
+    product.quantity = quantity;
+    cartProducts[index] = product;
+    localStorage.setItem(`carrito_${localStorage.getItem('correoUsuario')}`, JSON.stringify(cartProducts));
+
+    document.getElementById(`quantity-${index}`).textContent = quantity;
+    document.getElementById(`subtotal-${index}`).textContent = `$${(parseFloat(product.price.replace('$', '')) * quantity).toFixed(2)}`;
+    updateTotal();
+}
+
+// Función para actualizar el total
+function updateTotal() {
+    let cartProducts = JSON.parse(localStorage.getItem(`carrito_${localStorage.getItem('correoUsuario')}`)) || [];
+    let total = cartProducts.reduce((sum, product) => sum + (parseFloat(product.price.replace('$', '')) * (product.quantity || 1)), 0);
+    document.getElementById('subtotal-value').textContent = total.toFixed(2);
+    document.getElementById('total').textContent = `TOTAL: $${total.toFixed(2)}`;
+}
+
+// Función para eliminar un producto del carrito
+function removeFromCart(index) {
+    let cartProducts = JSON.parse(localStorage.getItem(`carrito_${localStorage.getItem('correoUsuario')}`)) || [];
     if (confirm('¿Estás seguro que deseas eliminar este producto del carrito?')) {
-        // Eliminar del localStorage
-        localStorage.removeItem('productInfo');
-        localStorage.removeItem('quantity');
-        localStorage.removeItem('cart');
+        cartProducts.splice(index, 1);
+        localStorage.setItem(`carrito_${localStorage.getItem('correoUsuario')}`, JSON.stringify(cartProducts));
+        document.querySelector(`[data-index="${index}"]`).remove();
+        updateTotal();
 
-        // Obtener elementos
-        const row = document.querySelector('table tbody tr');
-        const summaryCard = document.querySelector('.card');
-        const cartContainer = document.getElementById('cart-container');
-
-        // Agregar clase para animación de fade out
-        if (row) row.style.opacity = '0';
-        if (summaryCard) summaryCard.style.opacity = '0';
-
-        // Esperar a que termine la animación
-        setTimeout(() => {
-            cartContainer.innerHTML = `
-                <div class="alert alert-info text-center" style="opacity: 0">
+        if (cartProducts.length === 0) {
+            document.getElementById('cart-container').innerHTML = `
+                <div class="alert alert-info text-center">
                     <p>Tu carrito está vacío</p>
                     <a href="products.html" class="btn btn-primary">Ir a Productos</a>
                 </div>`;
-            
-            // Hacer aparecer el mensaje
-            setTimeout(() => {
-                const alert = cartContainer.querySelector('.alert');
-                if (alert) alert.style.opacity = '1';
-            }, 50);
-        }, 300);
+            purchaseSummary.innerHTML = ''; // Eliminar el resumen si el carrito está vacío
+        }
     }
 }
 
-function updateQuantity(change) {
-    const quantityElement = document.getElementById('quantity');
-    const currentQuantity = parseInt(quantityElement.textContent);
-    const newQuantity = Math.max(1, currentQuantity + change);
-    
-    // Actualizar cantidad mostrada
-    quantityElement.textContent = newQuantity;
-    
-    // Verificar si productInfo está en localStorage
-    const productInfoStr = localStorage.getItem('productInfo');
-    if (productInfoStr) {
-        const productInfo = JSON.parse(productInfoStr);
-        const price = parseFloat(productInfo.price.replace('$', ''));
-        const subtotal = price * newQuantity;
-        
-        // Actualizar subtotal
-        document.getElementById('subtotal').textContent = `$${subtotal.toFixed(2)}`;
-        
-        // Actualizar en localStorage
-        localStorage.setItem('quantity', newQuantity.toString());
-    }
-}
-
+// Función para finalizar la compra
 function checkout() {
     alert('¡Gracias por tu compra!');
-    localStorage.removeItem('productInfo');
-    localStorage.removeItem('quantity');
+    localStorage.removeItem(`carrito_${localStorage.getItem('correoUsuario')}`);
     window.location.href = 'index.html';
 }

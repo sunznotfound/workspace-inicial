@@ -120,7 +120,7 @@ function removeFromCart(index) {
             document.getElementById('cart-container').innerHTML = `
                 <div class="alert alert-info text-center">
                     <p>Tu carrito está vacío</p>
-                    <a href="products.html" class="btn btn-primary">Ir a Productos</a>
+                    <a href="categories.html" class="btn btn-primary">Ir a Productos</a>
                 </div>`;
             purchaseSummary.innerHTML = ''; // Eliminar el resumen si el carrito está vacío
         }

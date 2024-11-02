@@ -9,6 +9,13 @@ let PESO_SYMBOL = "UYU ";
 let PERCENTAGE_SYMBOL = '%';
 let MSG = "FUNCIONALIDAD NO IMPLEMENTADA";
 
+    // Mostrar el usuario en el NAVBAR
+    let usuarioDisplay = document.getElementById("usuarioDisplay");
+    let usuario = localStorage.getItem("correoUsuario");
+    if (usuarioDisplay && usuario) {
+        usuarioDisplay.textContent = usuario;
+    }
+
 //Función que se utiliza para actualizar los costos de publicación
 function updateTotalCosts(){
     let unitProductCostHTML = document.getElementById("productCostText");

@@ -6,6 +6,13 @@ let currentSortCriteria = undefined;
 let minCount = undefined;
 let maxCount = undefined;
 
+    // Mostrar el usuario en el NAVBAR
+    let usuarioDisplay = document.getElementById("usuarioDisplay");
+    let usuario = localStorage.getItem("correoUsuario");
+    if (usuarioDisplay && usuario) {
+        usuarioDisplay.textContent = usuario;
+    }
+
 function sortCategories(criteria, array) {
     let result = array.slice(); // Crea una copia del array
     if (criteria === ORDER_ASC_BY_NAME) {

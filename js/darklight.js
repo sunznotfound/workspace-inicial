@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const labeltoggle=document.getElementById('togglelabel');
     const darkModeEnabled=localStorage.getItem('dark-mode')==='enabled';
 
-    if (darkModeEnabled) {
+    if (toggle.checked===true) {
         document.body.classList.add('darkMode');
         toggle.checked = true; // Marca el toggle como seleccionado
         labeltoggle.innerHTML = '<i class="fa-solid fa-sun"></i>'; // Cambia a ícono de sol
@@ -19,11 +19,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if(checked){
             document.body.classList.add('darkMode');
-            localStorage.setItem('dark-mode', 'enabled')
             labeltoggle.innerHTML='<i class="fa-solid fa-sun"></i>';
         } else {
             document.body.classList.remove('darkMode');
-            localStorage.setItem('dark-mode', 'disabled');
             labeltoggle.innerHTML='<i class="fa-solid fa-moon"></i>';
         }
     });

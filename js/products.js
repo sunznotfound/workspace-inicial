@@ -16,6 +16,13 @@ document.addEventListener('DOMContentLoaded', () => {
   const catID = localStorage.getItem('catID');
   const url = catID ? `https://japceibal.github.io/emercado-api/cats_products/${catID}.json` : 'https://japceibal.github.io/emercado-api/cats_products/101.json';
 
+    // Mostrar el usuario en el NAVBAR
+    let usuarioDisplay = document.getElementById("usuarioDisplay");
+    let usuario = localStorage.getItem("correoUsuario");
+    if (usuarioDisplay && usuario) {
+        usuarioDisplay.textContent = usuario;
+    }
+
   // Realiza una solicitud para obtener los productos
   fetch(url)
     .then(response => {

@@ -456,10 +456,22 @@ h3{
   text-decoration: none;
 }
 
+.darkMode #clearRangeFilter {
+  background-color: #313245;
+  color: white;
+  border: 1px solid #000006;
+}
+
 #limpiar {
   background-color: #f9f9f9;
   color: black;
   text-decoration: none;
+}
+
+.darkMode #limpiar {
+  background-color: #191b26;
+  color: white;
+  border: 1px solid #000006;
 }
 
 /*Sección agregar calificación*/

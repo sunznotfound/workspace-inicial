@@ -38,7 +38,6 @@ document.addEventListener('DOMContentLoaded', function() {
                             <th>Costo</th>
                             <th>Cantidad</th>
                             <th>Subtotal</th>
-                            <th>Acción</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -48,14 +47,17 @@ document.addEventListener('DOMContentLoaded', function() {
                             <td>${cartProduct.price}</td>
                             <td>
                                 <div class="quantity-controls">
-                                    <button class="btn btn-sm btn-secondary" onclick="updateQuantity(${index}, -1)">-</button>
+                                    <button class="btn btn-sm btn-secondary" id="contadorColor1" onclick="updateQuantity(${index}, -1)">-</button>
                                     <span id="quantity-${index}">${quantity}</span>
-                                    <button class="btn btn-sm btn-secondary" onclick="updateQuantity(${index}, 1)">+</button>
+                                    <button class="btn btn-sm btn-secondary" id="contadorColor1" onclick="updateQuantity(${index}, 1)">+</button>
                                 </div>
                             </td>
                             <td id="subtotal-${index}">$${subtotal.toFixed(2)}</td>
                             <td>
-                                <button class="btn btn-danger btn-sm" onclick="removeFromCart(${index})">Eliminar</button>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" onclick="removeFromCart(${index})" class="bi bi-trash" viewBox="0 0 16 16" id="trash" style="cursor: pointer; color: #dc3545;">
+                                    <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z"/>
+                                    <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z"/>
+                                </svg>   
                             </td>
                         </tr>
                     </tbody>
@@ -115,6 +117,7 @@ function removeFromCart(index) {
         localStorage.setItem(`carrito_${localStorage.getItem('correoUsuario')}`, JSON.stringify(cartProducts));
         document.querySelector(`[data-index="${index}"]`).remove();
         updateTotal();
+        location.reload();
 
         if (cartProducts.length === 0) {
             document.getElementById('cart-container').innerHTML = `

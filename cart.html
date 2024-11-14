@@ -61,10 +61,73 @@
     <h6 class="my-4" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; text-align: center; font-weight: lighter;">ARTÍCULOS</h6>
     <div id="cart-container">
       <!-- El contenido del carrito se insertará dinámicamente aquí -->
+
+      
     </div>
     <div id="purchase-summary">
       <!-- El resumen de compra se insertará dinámicamente aquí -->
     </div>
+
+    <div id="datos-compra" class="my-4">
+      <h5>DATOS DE COMPRA</h5>
+      <p>TIPO DE ENVÍO</p>
+
+      <label class="custom-radio">
+        <input type="radio" name="tipoEnvio" value="1">
+        Premium 2 a 5 días (15%)
+        <span class="checkmark"></span>
+      </label>
+    
+      <label class="custom-radio">
+        <input type="radio" name="tipoEnvio" value="2">
+        Express 5 a 8 días (7%)
+        <span class="checkmark"></span>
+      </label>
+    
+      <label class="custom-radio">
+        <input type="radio" name="tipoEnvio" value="3">
+        Standard 12 a 15 días (5%)
+        <span class="checkmark"></span>
+      </label>
+  
+
+      <div class="direccion-envio">
+        <p>DOMICILIO</p>
+        
+        <label for="departamento">Departamento:</label>
+        <input type="text" id="departamento" name="departamento" required>
+        
+        <label for="localidad">Localidad:</label>
+        <input type="text" id="localidad" name="localidad" required>
+        
+        <label for="calle">Calle:</label>
+        <input type="text" id="calle" name="calle" required>
+        
+        <label for="numero">Número:</label>
+        <input type="text" id="numero" name="numero" required>
+        
+        <label for="esquina">Esquina:</label>
+        <input type="text" id="esquina" name="esquina" required>
+        
+      </div>
+
+       <!-- Selección de forma de pago -->
+  <div class="form-group">
+    <p>FORMA DE PAGO</p>
+    <label for="formaPago"></label>
+    <select id="formaPago" name="formaPago" class="form-control">
+      <option value="tarjeta">Tarjeta de Crédito</option>
+      <option value="transferencia">Transferencia Bancaria</option>
+    </select>
+  </div>
+
+
+      <div id="compra-detalle">
+        <!-- Aquí se insertarán los detalles de la compra -->
+      </div>
+    </div>
+    
+    
   </main>
   <footer class="text-muted">
     <div class="container">
@@ -81,6 +144,8 @@
       <div></div>
       <div></div>
     </div>
+
+    
   </div>
 
   <script>

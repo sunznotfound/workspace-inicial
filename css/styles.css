@@ -1285,3 +1285,238 @@ body.darkMode .btn-naranja:hover {
   border: 1px solid #000006;
   background-color: #191b26;
 }
+
+/* Estilos generales para el contenedor de los datos de compra */
+#datos-compra {
+  background-color: #f8f9fa; /* Fondo claro para que se distinga del resto */
+  padding: 20px; /* Espaciado interno alrededor del contenido */
+  border-radius: 8px; /* Bordes redondeados para un diseño más suave */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra sutil para darle profundidad */
+  margin-top: 20px; /* Espacio encima del contenedor para separarlo de otros elementos */
+  overflow-y: auto;
+  font-family: sans-serif;
+}
+
+/* Estilo para el título dentro del contenedor de datos de compra */
+#datos-compra h4 {
+  font-size: 1.5rem; /* Tamaño de fuente grande para el título */
+  color: #343a40; /* Color oscuro para el texto del título */
+  margin-bottom: 15px; /* Espacio debajo del título para separar de los detalles */
+}
+
+/* Estilo para los párrafos dentro de datos de compra */
+#datos-compra p {
+  font-size: 1rem; /* Tamaño de fuente más pequeño para el párrafo */
+  color: #6c757d; /* Color gris para que el texto no sea tan intenso */
+  margin-bottom: 20px; /* Espacio debajo del párrafo para separar los detalles */
+}
+
+/* Estilo del contenedor que contiene los detalles de la compra */
+#compra-detalle {
+  display: flex; /* Usar flexbox para alinear los elementos en columnas */
+  flex-direction: column; /* Asegura que los elementos estén en una columna */
+  gap: 15px; /* Espacio entre cada ítem de detalle */
+}
+
+/* Estilo para cada item de detalle dentro de los datos de compra */
+#compra-detalle .detalle-item {
+  display: flex; /* Usar flexbox para alinear los valores a la izquierda y derecha */
+  justify-content: space-between; /* Separar los elementos al máximo posible */
+  padding: 8px 12px; /* Espaciado interno para hacer que los ítems sean legibles */
+  background-color: #ffffff; /* Fondo blanco para cada fila de detalle */
+  border: 1px solid #e0e0e0; /* Borde sutil alrededor de cada ítem */
+  border-radius: 6px; /* Bordes ligeramente redondeados para un diseño suave */
+}
+
+/* Estilo para los textos dentro de los ítems de detalle */
+#compra-detalle .detalle-item span {
+  font-size: 1rem; /* Tamaño de fuente estándar */
+  color: #495057; /* Color gris oscuro para el texto */
+}
+
+/* Resaltar los valores de los ítems con un color más destacado */
+#compra-detalle .detalle-item strong {
+  font-weight: bold; /* Hacer los valores en negrita */
+  color: #007bff; /* Color azul para los valores para destacarlos */
+}
+
+/* Estilos responsivos para pantallas más pequeñas */
+@media (max-width: 767px) {
+  #datos-compra {
+      padding: 15px; /* Reducir el padding para que se ajuste mejor en pantallas pequeñas */
+  }
+
+  #datos-compra h4 {
+      font-size: 1.6rem; /* Reducir el tamaño de la fuente del título */
+  }
+
+  #compra-detalle {
+      gap: 10px; /* Reducir el espacio entre los ítems de detalle */
+  }
+}
+#datos-compra {
+  width: 500px;
+  height: 500px;
+  max-width: 400px; 
+  margin: left; /* Centra el contenedor en la página */
+
+
+}
+#datos-compra {
+    padding-top: 2px; /* Reduce el espacio superior dentro del contenedor */
+}
+#datos-compra {
+  position: relative;
+  top: -300px; /* Ajusta el valor a tu preferencia */
+}
+
+#datos-compra p {
+  font-size: 1rem; /* Tamaño de fuente más pequeño para el párrafo */
+  color: #6c757d; /* Color gris para que el texto no sea tan intenso */
+  margin-top: 20px; /* Mueve los párrafos hacia abajo */
+}
+
+
+/* Estilo global para los contenedores de los checkboxes */
+.custom-checkbox {
+  display: block;  /* Hace que cada checkbox se muestre en una línea */
+  position: relative;
+  padding-left: 30px;
+  cursor: pointer;
+  margin-bottom: 5px; /* Espaciado entre las opciones */
+  line-height: 20px;
+}
+
+/* Oculta los checkboxes por defecto */
+input[type="checkbox"] {
+  display: none;
+}
+
+/* Estilo para el checkmark (círculo) */
+.custom-checkbox .checkmark {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 20px;
+  height: 20px;
+  background-color: #ccc;
+  border-radius: 50%; /* Hace el checkbox redondo */
+  transition: background-color 0.3s;
+}
+
+
+/* Círculo blanco dentro del checkbox cuando está marcado */
+.custom-checkbox input[type="checkbox"]:checked + .checkmark::after {
+  content: '';
+  position: absolute;
+  left: 7px;
+  top: 7px;
+  width: 7px;
+  height: 7px;
+  background-color: white;
+  border-radius: 50%;
+}
+
+/* Estilo para el texto del checkbox */
+.custom-checkbox input[type="checkbox"] + .checkmark + span {
+  display: inline-block;
+  padding-left: 10px;
+  font-size: 14px;
+  vertical-align: middle;
+}
+
+
+/* Estilo para la sección de dirección (DOMICILIO) */
+.direccion-envio p {
+  font-size: 1.2em; /* Aumenta ligeramente el tamaño del texto del título */
+  margin-bottom: 15px; /* Agrega un espacio debajo del título */
+}
+
+/* Estilo para las etiquetas de los campos de texto (Departamento, Localidad, etc.) */
+.direccion-envio label {
+  display: block; /* Hace que cada etiqueta ocupe una línea completa (aparece una debajo de la otra) */
+  margin: 10px 0 5px; /* Agrega un margen arriba y abajo de las etiquetas, para separar las líneas */
+  font-size: 1em; /* Define un tamaño estándar para el texto */
+}
+
+/* Estilo para los campos de texto */
+.direccion-envio input[type="text"] {
+  width: 50%; /* Establece que los campos de texto ocuparán la mitad del espacio disponible (puedes ajustar este valor) */
+  padding: 8px; /* Agrega espacio interior en los campos de texto, evitando que el texto quede pegado a los bordes */
+  margin-bottom: 15px; /* Agrega espacio debajo de cada campo para separar los campos entre sí */
+  border: 1px solid #ccc; /* Establece un borde fino y de color gris claro alrededor de los campos */
+  border-radius: 4px; /* Redondea las esquinas del borde para que no sean tan rectas */
+}
+
+/* Estilo cuando un campo de texto está enfocado (cuando el usuario hace clic en el campo) */
+.direccion-envio input[type="text"]:focus {
+  outline-color: #e08a2f; /* Cambia el color del borde a verde cuando el campo está enfocado */
+}
+
+/* Estilo del contenedor de la forma de pago */
+.form-group {
+  margin-bottom: 20px; /* Separa cada grupo de formulario con un espacio inferior */
+  font-family: 'Arial', sans-serif; /* Define la fuente utilizada */
+
+}
+
+.form-group {
+  display: flex;
+  align-items: center;
+}
+
+.forma-pago-label {
+  margin-right: 12px;  /* Ajusta el espacio entre el texto y el select */
+  margin-bottom: 0;    /* Elimina el margen inferior del <p> */
+}
+
+
+.form-control {
+  position: relative;
+  top: -px;  /* Mueve el formulario 10px hacia arriba */
+  margin-left: 10px;
+}
+
+/* Estilo para el campo select (desplegable) */
+.form-control {
+  width: 50%; /* Hace que el select ocupe todo el ancho del contenedor */
+  padding: 10px; /* Espacio interno para que el texto no toque los bordes */
+  font-size: 14px; /* Tamaño de letra legible */
+  border: 1px solid #ccc; /* Borde gris claro para el campo */
+  border-radius: 5px; /* Bordes redondeados para un diseño más suave */
+  background-color: #fff; /* Fondo blanco para el campo */
+  color: #333; /* Color del texto dentro del select */
+  margin-top: 5px; /* Espacio superior entre la etiqueta y el select */
+  cursor: pointer; /* Cambia el cursor para indicar que es interactivo */
+  transition: border-color 0.3s ease; /* Suaviza la transición de cambio de borde */
+}
+
+/* Estilo cuando el select está enfocado (al hacer clic o tabular a él) */
+.form-control:focus {
+  border-color: #007bff; /* Cambia el color del borde a azul cuando está enfocado */
+  outline: none; /* Elimina el contorno predeterminado del navegador al hacer foco */
+}
+
+/* Estilo adaptado para pantallas más pequeñas (dispositivos móviles) */
+@media (max-width: 768px) {
+  .form-group {
+    margin-bottom: 15px; /* Reduce el espacio inferior en pantallas pequeñas */
+  }
+
+  .form-control {
+    font-size: 12px; /* Reduce el tamaño del texto para mejorar la legibilidad */
+    padding: 8px; /* Reduce el espacio interno para ajustar el campo */
+  }
+}
+
+/* Cambiar color de fondo */
+.btn-primary {
+  background-color: #e08a2f !important;  /* Cambia el color de fondo */
+  border-color: #e08a2f !important;  /* Cambia el color del borde */
+}
+
+/* Cambiar color al pasar el cursor por encima */
+.btn-primary:hover {
+  background-color: #a3a7a4 !important;  /* Cambia el color cuando el usuario pasa el cursor */
+  border-color: #e08a2f !important;  /* Cambia el color del borde cuando pasa el cursor */
+}

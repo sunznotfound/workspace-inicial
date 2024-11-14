@@ -125,9 +125,10 @@ function updateTotal() {
         totalQuantity += (product.quantity || 1);
     });
 
-    // El costo de envío siempre es 0
-    const shippingCost = 0.00;
-    const totalWithShipping = subtotal + shippingCost;
+    // Obtener el valor del envío seleccionado
+    let shippingPercentage = parseFloat(document.querySelector('input[name="tipoEnvio"]:checked')?.value || 0);
+    let shippingCost = subtotal * shippingPercentage;
+    let totalWithShipping = subtotal + shippingCost;
 
     // Actualizar valores en el resumen
     document.getElementById('subtotal-value').textContent = subtotal.toFixed(2);
@@ -152,13 +153,16 @@ function removeFromCart(index) {
                     <p>Tu carrito está vacío</p>
                     <a href="products.html" class="btn btn-primary">Ir a Productos</a>
                 </div>`;
-            purchaseSummary.innerHTML = ''; // Eliminar el resumen de compra
-            
+                // Eliminar el contenido del resumen de compra
+                const purchaseSummary = document.getElementById('purchase-summary');
+                if (purchaseSummary) {
+                    purchaseSummary.innerHTML = ''; // Limpiar el resumen de compra
+                }            
          // Eliminar los datos de compra (asegurándote que el área de datos-compra también se vacíe)
-    const datosCompra = document.getElementById('datos-compra');
-    if (datosCompra) {
-        datosCompra.style.display = 'none';  // Esto oculta el contenedor de los datos de compra
-    }
+            const datosCompra = document.getElementById('datos-compra');
+            if (datosCompra) {
+                datosCompra.style.display = 'none';  // Esto oculta el contenedor de los datos de compra
+            }
         }
 
         

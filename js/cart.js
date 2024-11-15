@@ -48,7 +48,6 @@ if (cartProducts.length === 0) {
                             <th>Costo</th>
                             <th>Cantidad</th>
                             <th>Subtotal</th>
-                            <th>Eliminar</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -57,11 +56,12 @@ if (cartProducts.length === 0) {
                             <td>${cartProduct.name}</td>
                             <td>${cartProduct.price}</td>
                             <td>
-                                <div class="quantity-controls">
-                                    <button class="btn btn-sm btn-secondary" onclick="updateQuantity(${index}, -1)">-</button>
+                                <div class="quantity-controls"> 
+                                    <button class="btn btn-sm btn-secondary" id="contadorColor1" onclick="updateQuantity(${index}, -1)">-</button>
                                     <span id="quantity-${index}">${quantity}</span>
-                                    <button class="btn btn-sm btn-secondary" onclick="updateQuantity(${index}, 1)">+</button>
+                                    <button class="btn btn-sm btn-secondary" id="contadorColor2" onclick="updateQuantity(${index}, 1)">+</button>
                                 </div>
+                                
                             </td>
                             <td id="subtotal-${index}">$${subtotal.toFixed(2)}</td>
                             <td>
@@ -151,7 +151,7 @@ function removeFromCart(index) {
             document.getElementById('cart-container').innerHTML = `
                 <div class="alert alert-info text-center">
                     <p>Tu carrito está vacío</p>
-                    <a href="products.html" class="btn btn-primary">Ir a Productos</a>
+                    <a href="categories.html" class="btn btn-primary">Ir a Productos</a>
                 </div>`;
                 // Eliminar el contenido del resumen de compra
                 const purchaseSummary = document.getElementById('purchase-summary');

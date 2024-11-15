@@ -68,58 +68,66 @@
       <!-- El resumen de compra se insertará dinámicamente aquí -->
     </div>
 
-    <div id="datos-compra" class="my-4">
-      <h5>DATOS DE COMPRA</h5>
-      <p>TIPO DE ENVÍO</p>
 
-      <label class="custom-radio">
-        <input type="radio" name="tipoEnvio" value="0.15" onchange="updateTotal()">
-        Premium 2 a 5 días (15%)
-        <span class="checkmark"></span>
-      </label>
+    <div id="datos-compra" class="my-4" style="display: flex; justify-content: space-between; align-items: stretch; width: 100%; height: 300px;">
+      <!-- Primer contenedor -->
+      <div class="container-left" style="flex: 1; padding: 10px; border-right: 2px solid #ccc;">
+        <p>TIPO DE ENVÍO</p>
     
-      <label class="custom-radio">
-        <input type="radio" name="tipoEnvio" value="0.07" onchange="updateTotal()">
-        Express 5 a 8 días (7%)
-        <span class="checkmark"></span>
-      </label>
+        <label class="custom-radio">
+          <input type="radio" name="tipoEnvio" value="0.15" onchange="updateTotal()">
+          Premium 2 a 5 días (15%)
+          <span class="checkmark"></span>
+        </label>
     
-      <label class="custom-radio">
-        <input type="radio" name="tipoEnvio" value="0.05" onchange="updateTotal()">
-        Standard 12 a 15 días (5%)
-        <span class="checkmark"></span>
-      </label>
-  
+        <label class="custom-radio">
+          <input type="radio" name="tipoEnvio" value="0.07" onchange="updateTotal()">
+          Express 5 a 8 días (7%)
+          <span class="checkmark"></span>
+        </label>
+    
+        <label class="custom-radio">
+          <input type="radio" name="tipoEnvio" value="0.05" onchange="updateTotal()">
+          Standard 12 a 15 días (5%)
+          <span class="checkmark"></span>
+        </label>
 
-      <div class="direccion-envio">
-        <p>DOMICILIO</p>
-        
-        <label for="departamento">Departamento:</label>
-        <input type="text" id="departamento" name="departamento" required>
-        
-        <label for="localidad">Localidad:</label>
-        <input type="text" id="localidad" name="localidad" required>
-        
-        <label for="calle">Calle:</label>
-        <input type="text" id="calle" name="calle" required>
-        
-        <label for="numero">Número:</label>
-        <input type="text" id="numero" name="numero" required>
-        
-        <label for="esquina">Esquina:</label>
-        <input type="text" id="esquina" name="esquina" required>
-        
+         <!-- Selección de forma de pago -->
+         <div class="form-group">
+          <p>FORMA DE PAGO</p>
+          <label for="formaPago"></label>
+          <select id="formaPago" name="formaPago" class="form-control">
+            <option value="tarjeta">Tarjeta de Crédito</option>
+            <option value="transferencia">Transferencia Bancaria</option>
+          </select>
+        </div>
       </div>
 
-       <!-- Selección de forma de pago -->
-  <div class="form-group">
-    <p>FORMA DE PAGO</p>
-    <label for="formaPago"></label>
-    <select id="formaPago" name="formaPago" class="form-control">
-      <option value="tarjeta">Tarjeta de Crédito</option>
-      <option value="transferencia">Transferencia Bancaria</option>
-    </select>
-  </div>
+    
+      <!-- Segundo contenedor -->
+      <div class="container-right" style="flex: 1; padding: 10px;">
+        <div class="direccion-envio">
+          <p>DOMICILIO</p>
+          <label for="departamento">Departamento:</label>
+          <input type="text" id="departamento" name="departamento" required>
+    
+          <label for="localidad">Localidad:</label>
+          <input type="text" id="localidad" name="localidad" required>
+    
+          <label for="calle">Calle:</label>
+          <input type="text" id="calle" name="calle" required>
+    
+          <label for="numero">Número:</label>
+          <input type="text" id="numero" name="numero" required>
+    
+          <label for="esquina">Esquina:</label>
+          <input type="text" id="esquina" name="esquina" required>
+        </div>
+    
+       
+      </div>
+    </div>
+    
 
 
       <div id="compra-detalle">

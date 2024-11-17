@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
    // Mostrar el carrito o mensaje de vacío
-if (cartProducts.length === 0) {
+    if (cartProducts.length === 0) {
     cartContainer.innerHTML = `
         <div class="alert alert-info text-center">
             <p>Tu carrito está vacío</p>
@@ -28,7 +28,7 @@ if (cartProducts.length === 0) {
     }
 
     return;
-}
+    }
 
 
     // Generar contenido del carrito
@@ -89,7 +89,7 @@ if (cartProducts.length === 0) {
                         
                         <hr>
                         <h5 id="total">TOTAL: $0.00</h5>
-                        <button class="btn btn-primary w-100" onclick="checkout()">Finalizar compra</button>
+                        <button class="btn btn-primary w-100" id=finalizarCompra onclick="checkout()">Finalizar compra</button>
                     </div>
                 </div>
             </div>
@@ -97,6 +97,45 @@ if (cartProducts.length === 0) {
 
     // Calcular y mostrar el total
     updateTotal();
+
+    // Función para finalizar la compra si se cumplen las validaciones
+    const finalizarCompraBtn = document.getElementById('finalizarCompra');
+
+    if (finalizarCompraBtn) {
+        finalizarCompraBtn.addEventListener('click', function () {
+            let errores = [];
+
+            // Validar que los campos de dirección no estén vacíos
+            const camposDireccion = ['departamento', 'localidad', 'calle', 'numero', 'esquina'];
+            camposDireccion.forEach(campoId => {
+                const campo = document.getElementById(campoId);
+                if (!campo || campo.value.trim() === '') {
+                    errores.push(`El campo ${campoId} está vacío.`);
+                }
+            });
+
+            // Validar que haya un tipo de envío seleccionado
+            const tipoEnvio = document.querySelector('input[name="tipoEnvio"]:checked');
+            if (!tipoEnvio) {
+                errores.push('No se ha seleccionado un tipo de envío.');
+            }
+            
+            // Validar que se haya seleccionado una forma de pago
+            const formaPago = document.getElementById('formaPago');
+            if (!formaPago || formaPago.value.trim() === '') {
+                errores.push('No se ha seleccionado una forma de pago.');
+            }
+
+            // Resultado de la compra
+            if (errores.length > 0) {
+                alert('Errores encontrados:\n' + errores.join('\n'));
+            } else {
+                alert('¡Gracias por tu compra!');
+                localStorage.removeItem(`carrito_${localStorage.getItem('correoUsuario')}`);
+                window.location.href = 'index.html';               
+            }
+        });
+    }
 });
 
 // Función para actualizar la cantidad
@@ -169,9 +208,5 @@ function removeFromCart(index) {
     }
 }
 
-// Función para finalizar la compra
-function checkout() {
-    alert('¡Gracias por tu compra!');
-    localStorage.removeItem(`carrito_${localStorage.getItem('correoUsuario')}`);
-    window.location.href = 'index.html';
-}
+
+

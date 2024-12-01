@@ -41,6 +41,16 @@ nav a {
   font-weight: bold;
 }
 
+.darkMode .jumbotron {
+  background-color: #53C0FB;
+  background: url('../img/coverdark.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: black;
+  font-weight: bold;
+}
+
 @media (min-width: 768px) {
   .jumbotron {
     padding-top: 6rem;
@@ -454,6 +464,7 @@ h3{
   background-color: #f9f9f9;
   color: black;
   text-decoration: none;
+  border: 1px solid black;
 }
 
 .darkMode #clearRangeFilter {
@@ -469,8 +480,12 @@ h3{
 }
 
 .darkMode #limpiar {
-  background-color: #191b26;
+  background-color: #313245;
   color: white;
+  border: 1px solid #000006;
+}
+
+.darkMode #filtrar, #rangeFilterCount {
   border: 1px solid #000006;
 }
 
@@ -855,20 +870,45 @@ input[type="text"], textarea{
   color: #333; 
 }
 
+.darkMode #botonGuardar {
+  color: white;
+}
+
 /*ESTILO BOTONES PERFIL*/
 #botonGuardar, #deleteButton, #editButton{
   background-color: #b4b1b148;
   border-radius: 7%;
-  box-shadow: 2px 2px 2px #626262;
+  box-shadow: 2px 2px 2px #626262
+  color: black;
 }
+
+.darkMode .btn#deleteButton {
+  color: #000;
+}
+
+
 #botonGuardar:hover{
   background-color: #ff7300;
 }
+
+.darkMode #botonGuardar:hover{
+  background-color: #191b26;
+}
+
 #deleteButton:hover{
   background-color: #ff7300;
 } 
+
+.darkMode #deleteButton:hover{
+  background-color: #191b26;
+}
+
 #editButton:hover{
   background-color: #ff7300;
+}
+
+.darkMode #editButton:hover{
+  background-color: #191b26;
 }
 
 
@@ -909,6 +949,8 @@ input[type="text"], textarea{
 #toggle:checked + #togglelabel .ball{
   transform: translateX(24px);
 }
+
+
 
 @media (max-width: 990px) {
   .dropdown {
@@ -1246,6 +1288,8 @@ body.darkMode .btn-naranja:hover {
   color: white;
 }
 
+
+
 .darkMode #contenedorform {
   background-color: #313245;
 }
@@ -1286,6 +1330,21 @@ body.darkMode .btn-naranja:hover {
   background-color: #191b26;
 }
 
+.darkMode .vender {
+  color: white;
+}
+
+.darkMode #file-upload {
+  background-color: #756a90;
+}
+
+
+.darkMode #productCurrency, #productCategory{
+  background-color: #756a90;
+  border: 1px solid black;
+  color: white;
+}
+
 /* Estilos generales para el contenedor de los datos de compra */
 #datos-compra {
   background-color: #f8f9fa;
@@ -1299,6 +1358,14 @@ body.darkMode .btn-naranja:hover {
   overflow-y: auto;
   position: relative;
   top: -310px; /* Mueve el contenedor hacia arriba */
+}
+
+.darkMode #datos-compra{
+  background-color: #000006;
+}
+
+.darkMode select.form-control {
+  color: black;
 }
 
 /* Estilo para el título dentro del contenedor de datos de compra */
